@@ -1,0 +1,1540 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@sigma360.com
+    name: Sigma Customer Success Team
+  description: "### API Concepts\nThis API is designed to help you interact and integrate with Sigma360. You can use it to create new entities, receive notifications about changes to your entities, and retrieve information about your entities. All aspects of a Sigma360 entity can be retrieved through this API.\n\n#### Screening\nScreening identifies: risks, KYC details, news and other critical information based on the provided entity name. The results returned are determined by the pre-defined Filter Set (See below for more details).  \n\n##### Monitoring\nMonitoring will perform a continuous, ongoing screening function, where you can expect to receive alerts and updates about changes to your entities without needing to manually trigger a screening event.\nAn entity is under continuous monitoring if it appears in the 'Monitoring' tab and is not archived. Archiving an entity will suppress all alerts and updates for that entity.\n\n##### Alerts\nAlerts are discreet work items that bring a detected risk to an analyst's attention. You can find alerts in the UI's 'Alerts' tab. \nEvery monitored entity will create alerts as risks are detected. When you are performing a one-off screen, you can specify whether or not you want durable, UI-visible alerts to be created. Alerts created in this way will be visible together with alerts created through monitoring. \n\n\n#### Webhooks\nSeveral events will fire an out-of-band request back to your systems to inform you of data changes or allow you to take action.\n1. Entity Updated - changes to Matches, Indicators, KYC data or News\n2. Entity Creation Finished - a bulk entity creation job has completed\n\nNote that all Webhooks fire against a url provided by you during onboarding. If you need to change this url, please contact Sigma Customer Success.\n\n#### Filter Sets\nMonitoring and screening both use Filter Sets to configure returns and manage true and false positives according to organizational risk appetite.\nFor detailed information on ‘Filter Sets’ - contact Support: [support\\@sigmaratings.com](mailto:support\\@sigmaratings.com).\nScreening response data is organized by: Indicators, News and KYC details. \nFor more information on Indicators, News and KYC data see:[Sigma360 Indicators & Global Data](https://6879283.fs1.hubspotusercontent-na1.net/hubfs/6879283/02%20Product%20Documents/Sigma360%20Indicators%20&%20Global%20Data.pdf). \n\n\n#### Conventions and Definitions\nAll entities are identified by a unique Sigma360 Entity ID (URN). These are stable over the entire lifetime of the entity.\n\nAll dates are expected in RFC3339 format or part thereof, e.g. \"2006-01-02T15:04:05Z07:00\".\n\nAll countries are expected to be in [ISO 3166-1 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements), e.g. \"US\", or \"GB\".\nIn general, when a filter is not specified, the default is to return all entities for that field.\n\n##### Rate Limiting\nBy default, we impose a maximum of 100 requests per second per account. If you exceed this limit, you will receive a 429 response codes for the extra requests.\nWe encourage you to aggressively retry requests that were rate-limited, as these do not count against the limit. The limits \ndo not carry over and do not have any memory of previous rate limit events. If you are consistently hitting rate limits, please contact Sigma Customer Success.\n\n##### UI Only tasks\nCertain administrative tasks are limited to the UI and are not available via API. These are:\n1. Creation and maintenance of Filter Sets\n2. Changing the group of one or more entities\n3. Changing the Filter Set for one ore more entities\n4. Review workflow\n"
+  title: 'Sigma360 Account Monitoring: Entity Creation API'
+  version: v2.0.1
+  x-logo:
+    altText: Sigma360
+    href: https://sigma360.com
+    url: logo.png
+servers:
+- url: https://api.sigma360.com/external/v2
+security:
+- apiKey: []
+tags:
+- description: Creating new 'My Entities'
+  name: 'Monitoring: Entity Creation'
+paths:
+  /entities/create:
+    post:
+      description: This endpoint will synchronously add one entity to your monitored entity population. This returns the full state of the entity, for convenience. If you are adding more than one entity, it is recommend that you use the bulk endpoint for performance.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestSingleEntityUploadRequestPublic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntity'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Create one Entity
+      tags:
+      - 'Monitoring: Entity Creation'
+  /entities/create/assume-clean:
+    post:
+      description: For system migrations only. This endpoint will asynchronously add one or more entities to your monitored entity population, skipping alerts, ignoring existing risk, and force-setting the status as cleared.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestEntitiesUploadRequestPublic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBulkEntityUploadResponse'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Migrate Pre-reviewed Entities into Sigma360 (Skip Risk and Alerts)
+      tags:
+      - 'Monitoring: Entity Creation'
+  /entities/create/enqueue:
+    post:
+      description: This endpoint will asynchronously add one or more entities to your monitored entity population. It is recommended that you use this endpoint when adding more than one entity. You will receive a webhook event when the entity creation job completes.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestEntitiesUploadRequestPublic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBulkEntityUploadResponse'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Enqueue a bulk entity creation task
+      tags:
+      - 'Monitoring: Entity Creation'
+  /entities/create/status/{taskID}:
+    get:
+      description: This endpoint reports the progress of bulk entity creation tasks. If registered, you will receive a webhook event when the entity creation job completes.
+      parameters:
+      - description: 'Page number, 1-indexed. Default: 1'
+        in: query
+        name: page
+        schema:
+          description: 'Page number, 1-indexed. Default: 1'
+          example: 1
+          type: integer
+      - description: 'Number of results per page. Maximum: 100, Default: 10'
+        in: query
+        name: pageSize
+        schema:
+          description: 'Number of results per page. Maximum: 100, Default: 10'
+          example: 10
+          type: integer
+      - description: The task ID returned from the upload request
+        in: path
+        name: taskID
+        required: true
+        schema:
+          description: The task ID returned from the upload request
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTaskProgress'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Check on the progress or errors of a bulk entity creation task
+      tags:
+      - 'Monitoring: Entity Creation'
+  /group:
+    post:
+      description: Create a single entity group under your account.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestCreateEntityGroupRequestPublic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntityGroup'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Create a single entity group
+      tags:
+      - 'Monitoring: Entity Creation'
+  /groups:
+    get:
+      description: Returns all entity groups created under your account.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntityGroups'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Retrieve all entity groups
+      tags:
+      - 'Monitoring: Entity Creation'
+components:
+  schemas:
+    ResponseNewsMetadata:
+      properties:
+        count:
+          description: The number of news events for this type that are currently detected
+          example: 3
+          type: integer
+        eventNewsType:
+          description: The event news type currently detected
+          example: Legal Risk
+          type: string
+        samplePublishers:
+          description: A sample of the publishers that are currently detected
+          items:
+            example: The New York Times
+            type: string
+          nullable: true
+          type: array
+        unformattedEventNewsType:
+          description: The unformatted event news type currently detected
+          example: legal_risk
+          type: string
+      type: object
+    SigmaidDateWithSource:
+      properties:
+        humanReadable:
+          description: A human-readable representation of the range. Show in user interfaces instead of the date range if present
+          example: Circa 1980
+          nullable: true
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        until:
+          description: If the date is a range, the end of the range
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        value:
+          description: The date, or the start of a date range
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          type: string
+      type: object
+    ResponseIndicator:
+      properties:
+        category:
+          example: Sanctions
+          type: string
+        causalSigmaID:
+          $ref: '#/components/schemas/SigmaidSummarySearchResultRow'
+        code:
+          example: SAN006
+          type: string
+        date:
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        decisioning:
+          $ref: '#/components/schemas/ResponseDecisionState'
+        decisioningTimeline:
+          items:
+            $ref: '#/components/schemas/ResponseDecisionTimelineState'
+          nullable: true
+          type: array
+        description:
+          example: Swiss State Secretariat for Economic Affairs
+          type: string
+        extras:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          description: Extra details about the indicator
+          nullable: true
+          type: object
+        hopsAway:
+          example: 0
+          type: integer
+        name:
+          example: Appears on sanction list
+          type: string
+        originatingSigmaID:
+          type: string
+        primaryExtras:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          description: Extra details about the indicator, typical shown above the fold
+          nullable: true
+          type: object
+        relationshipChain:
+          $ref: '#/components/schemas/SigmaidRelationshipChain'
+        score:
+          example: 90
+          type: integer
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        sources:
+          items:
+            $ref: '#/components/schemas/SigmaidSourceURL'
+          nullable: true
+          type: array
+        subcategory:
+          example: sanctions_swiss
+          type: string
+        urn:
+          example: urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=
+          type: string
+      required:
+      - urn
+      - code
+      - name
+      - category
+      - subcategory
+      - hopsAway
+      - sources
+      - description
+      type: object
+    ResponseDecisionTimelineState:
+      properties:
+        decidedByDefault:
+          type: boolean
+        decisionedAgainst:
+          type: boolean
+        notes:
+          type: string
+        rationale:
+          items:
+            type: string
+          nullable: true
+          type: array
+        reviewSubmittedAt:
+          type: string
+        reviewedByUserName:
+          type: string
+        reviewedByUserURN:
+          type: string
+      type: object
+    ResponseEntityGroups:
+      properties:
+        entityGroups:
+          items:
+            $ref: '#/components/schemas/ResponseEntityGroup'
+          nullable: true
+          type: array
+      type: object
+    ResponseEntity:
+      properties:
+        archivedAt:
+          description: Not null if the entity has been archived. The time when the entity was archived
+          format: date-time
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        customFields:
+          description: User-provided metadata, any format. Does not affect matching, risk, or profile data.
+          items:
+            $ref: '#/components/schemas/SigmaidCustomEntityField'
+          nullable: true
+          type: array
+        customerKey:
+          description: Optional. A user-provided identifier that will be returned in alerts and monitoring. Any format.
+          example: ABC1234567890
+          type: string
+        dispositionState:
+          $ref: '#/components/schemas/ResponseEntityDispositionState'
+        entityGroups:
+          items:
+            $ref: '#/components/schemas/ResponseMinimalEntityGroup'
+          nullable: true
+          type: array
+        entityName:
+          example: InGen Corporation
+          type: string
+        entitySources:
+          description: Describes which job or action created the entity
+          items:
+            $ref: '#/components/schemas/CommonEntitySource'
+          nullable: true
+          type: array
+        entityType:
+          description: The resolved entity type
+          enum:
+          - company
+          - person
+          - vessel
+          - aircraft
+          - ''
+          example: company
+          nullable: true
+          type: string
+        escalated:
+          type: boolean
+        escalatedByUserName:
+          nullable: true
+          type: string
+        escalatedByUserUrn:
+          nullable: true
+          type: string
+        escalatedTime:
+          format: date-time
+          nullable: true
+          type: string
+        filterSetID:
+          minimum: 0
+          type: integer
+        filterSetName:
+          example: Investigative Due Diligence
+          type: string
+        hasOpenAlert:
+          description: Whether the entity has an open alert
+          type: boolean
+        indicatorSummaries:
+          description: The summary of the indicators that are currently active
+          items:
+            $ref: '#/components/schemas/SigmaidIndicatorSummary'
+          nullable: true
+          type: array
+        indicators:
+          $ref: '#/components/schemas/ResponseIndicators'
+        matches:
+          $ref: '#/components/schemas/ResponseMatches'
+        monitored:
+          description: Whether the entity will receive automated data and risk updates
+          example: true
+          type: boolean
+        notes:
+          description: The user-provided notes that have been added to the entity
+          items:
+            $ref: '#/components/schemas/ResponseNote'
+          nullable: true
+          type: array
+        organizationURN:
+          description: The primary identifier for the organization that owns the entity
+          example: urn:sigma:organization:ingen-corp
+          type: string
+        profile:
+          $ref: '#/components/schemas/ResponseProfile'
+        reviewState:
+          $ref: '#/components/schemas/ResponseEntityReviewState'
+        riskMetadata:
+          $ref: '#/components/schemas/ResponseRiskMetadata'
+        riskScore:
+          description: The risk from 0 to 100, where 0 is the lowest risk and 100 is the highest risk
+          example: 50
+          type: integer
+        searchParameters:
+          $ref: '#/components/schemas/ResponseSearchParameters'
+        updatedAt:
+          format: date-time
+          type: string
+        urn:
+          description: The primary identifier for user-created entities
+          example: urn:sigma:entity:123e4567-e89b-12d3-a456-426614174000
+          type: string
+      type: object
+    ResponseEntityGroup:
+      properties:
+        associatedEntitiesCount:
+          description: The number of entities present in this group
+          example: 100
+          type: integer
+        associatedTeamsCount:
+          description: The number of teams which this groups belongs
+          example: 2
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        entityGroupName:
+          type: string
+        id:
+          minimum: 0
+          type: integer
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    RequestCreateEntityGroupRequestPublic:
+      properties:
+        entityGroupName:
+          type: string
+      type: object
+    SigmaidKYCEntityData:
+      properties:
+        aliases:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        facts:
+          items:
+            $ref: '#/components/schemas/SigmaidFact'
+          nullable: true
+          type: array
+        locations:
+          items:
+            $ref: '#/components/schemas/SigmaidLocation'
+          nullable: true
+          type: array
+        telephones:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        websites:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    SigmaidCorporateNumber:
+      properties:
+        country:
+          items:
+            type: string
+          nullable: true
+          type: array
+        number:
+          type: string
+        register:
+          items:
+            type: string
+          nullable: true
+          type: array
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+      type: object
+    SigmaidEconomicActivity:
+      properties:
+        code:
+          type: string
+        label:
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+      type: object
+    SigmaidSummarySearchResultRow:
+      properties:
+        aliases:
+          items:
+            example: InGen, InGen Corp
+            type: string
+          nullable: true
+          type: array
+        birthDates:
+          description: Birth dates of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        entityName:
+          example: InGen Corporation
+          type: string
+        entityType:
+          example: company
+          type: string
+        foundationDates:
+          description: Foundation dates of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        hasIndirectOwners:
+          type: boolean
+        hasNetworkConnections:
+          type: boolean
+        indicatorSummaries:
+          items:
+            $ref: '#/components/schemas/SigmaidIndicatorSummary'
+          nullable: true
+          type: array
+        locations:
+          items:
+            $ref: '#/components/schemas/SigmaidLocation'
+          nullable: true
+          type: array
+        matchDOB:
+          type: string
+        matchLocation:
+          type: string
+        matchName:
+          type: string
+        matchStrength:
+          type: number
+        risk:
+          $ref: '#/components/schemas/SigmaidRiskSummary'
+        sigmaID:
+          example: 3BX869NCJTZ5K
+          type: string
+        sources:
+          items:
+            $ref: '#/components/schemas/SigmaidSourcesByIntegration'
+          nullable: true
+          type: array
+      type: object
+    ResponseBulkEntityUploadResponse:
+      properties:
+        taskID:
+          type: string
+      type: object
+    SigmaidTextWithSource:
+      properties:
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        value:
+          example: <text>
+          type: string
+      type: object
+    SigmaidRelationshipChain:
+      properties:
+        edges:
+          items:
+            $ref: '#/components/schemas/SigmaidEdge'
+          nullable: true
+          type: array
+        entities:
+          items:
+            $ref: '#/components/schemas/SigmaidBasicEntityResult'
+          nullable: true
+          type: array
+      type: object
+    SigmaidIdentification:
+      properties:
+        country:
+          nullable: true
+          type: string
+        extras:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        label:
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        value:
+          type: string
+      type: object
+    SigmaidLocation:
+      properties:
+        address:
+          example: 10 Downing St, London SW1A 2AB, United Kingdom
+          type: string
+        country:
+          example: United Kingdom
+          type: string
+        countryCode:
+          example: GB
+          type: string
+        fromDate:
+          example: '1684-05-20'
+          type: string
+        locality:
+          example: London
+          type: string
+        majorAdministrativeDivision:
+          example: England
+          type: string
+        minorAdministrativeDivision:
+          example: City of Westminster
+          type: string
+        postalCode:
+          example: SW1A 2AB
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        streetName:
+          example: Downing St
+          type: string
+        streetNumber:
+          example: '10'
+          type: string
+        toDate:
+          example: '2020-05-20'
+          type: string
+        type:
+          example: Residence
+          type: string
+      type: object
+    ResponseUnreviewedItems:
+      properties:
+        numIndicators:
+          description: The number of indicators inside the entity that require review
+          example: 5
+          type: integer
+        numMatches:
+          description: The number of matches inside the entity that require review
+          example: 2
+          type: integer
+        numNews:
+          description: The number of news events inside the entity that require review
+          example: 16
+          type: integer
+        total:
+          description: The number of items inside the entity that require review
+          example: 3
+          type: integer
+      type: object
+    SigmaidFacetVessel:
+      properties:
+        imo:
+          $ref: '#/components/schemas/SigmaidTextWithSource'
+        maritimeCallSigns:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        portsOfRegistry:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        types:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    ResponseEntityReviewState:
+      properties:
+        isAllowedToEndReview:
+          description: Whether the current user is allowed to cancel / submit a review
+          example: false
+          type: boolean
+        isEditingLocked:
+          description: Whether the current user is allowed to change this entity
+          example: false
+          type: boolean
+        lastReviewDate:
+          description: Time of the last review submission
+          example: '2020-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        reviewLockedByName:
+          description: The name of the user who locked the entity for review
+          example: John Hammond
+          nullable: true
+          type: string
+        reviewLockedByURN:
+          description: The URN of the user who locked the entity for review
+          example: urn:sigma:user:f6ba1259b3a35de80aab7733c5d5
+          nullable: true
+          type: string
+        reviewLockedSince:
+          description: The time when the entity was locked for review
+          example: '2020-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        reviewStatus:
+          enum:
+          - no_review_necessary
+          - needs_review
+          - review_locked
+          - reviewed
+          example: needs_review
+          type: string
+        unreviewedItems:
+          $ref: '#/components/schemas/ResponseUnreviewedItems'
+      type: object
+    SigmaidFacetCompany:
+      properties:
+        corporateNumbers:
+          items:
+            $ref: '#/components/schemas/SigmaidCorporateNumber'
+          nullable: true
+          type: array
+        economicActivities:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/SigmaidEconomicActivity'
+            type: array
+          nullable: true
+          type: object
+        foundedDates:
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        incorporationTypes:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        linesOfBusiness:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        statuses:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    RequestEntitiesUploadRequestPublic:
+      properties:
+        entityGroupIDs:
+          items:
+            minimum: 0
+            type: integer
+          nullable: true
+          type: array
+        filterSetID:
+          minimum: 0
+          type: integer
+        searches:
+          items:
+            $ref: '#/components/schemas/SigmaidBasicSearchParams'
+          nullable: true
+          type: array
+      required:
+      - filterSetID
+      - entityGroupIDs
+      type: object
+    SigmaidCustomEntityField:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    SigmaidRiskSummary:
+      properties:
+        score:
+          type: number
+      type: object
+    SigmaidSourceURL:
+      properties:
+        name:
+          type: string
+        url:
+          nullable: true
+          type: string
+      type: object
+    SigmaidIndicatorSummary:
+      properties:
+        category:
+          example: Sanctions
+          type: string
+        count:
+          example: 2
+          type: integer
+        isNetwork:
+          description: Indicates whether the indicator is describes this entity or one of its network connections
+          example: false
+          type: boolean
+        maxScore:
+          example: 100
+          type: integer
+      type: object
+    SigmaidFacetPerson:
+      properties:
+        dobs:
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        genders:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        identifications:
+          items:
+            $ref: '#/components/schemas/SigmaidIdentification'
+          nullable: true
+          type: array
+        nationalities:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        politicalPositions:
+          items:
+            $ref: '#/components/schemas/SigmaidPoliticalPosition'
+          nullable: true
+          type: array
+      type: object
+    SigmaidPoliticalPosition:
+      properties:
+        country:
+          type: string
+        description:
+          type: string
+        from:
+          nullable: true
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        to:
+          nullable: true
+          type: string
+      type: object
+    ResponseProfile:
+      properties:
+        facet:
+          $ref: '#/components/schemas/ResponseFacetInfo'
+        kyc:
+          $ref: '#/components/schemas/SigmaidKYCEntityData'
+      type: object
+    SigmaidBasicSearchParams:
+      properties:
+        aliases:
+          description: Secondary names to perform a search on
+          items:
+            example: InGen, InGen Corp
+            type: string
+          nullable: true
+          type: array
+        countries:
+          description: ISO 3166-1 alpha-2
+          items:
+            example: US
+            type: string
+          nullable: true
+          type: array
+        customFields:
+          description: Optional. A list of custom fields to be associated with the entity for cross-referencing or disambiguation in alerts and monitoring. Does not affecting risk or matching logic. Each field must have a unique key.
+          items:
+            $ref: '#/components/schemas/SigmaidCustomEntityField'
+          nullable: true
+          type: array
+        customerKey:
+          description: Optional. A user-provided identifier that will be returned in alerts and monitoring. Any format.
+          example: ABC1234567890
+          type: string
+        dob:
+          description: Birth or foundation date. YYYY, YYYY-MM, YYYY-MM-DD, YYYY/MM or YYYY/MM/DD format.
+          example: '1993-06-11'
+          nullable: true
+          type: string
+        entityName:
+          description: The primary name of the search
+          example: InGen Corporation
+          type: string
+        entityType:
+          enum:
+          - person
+          - company
+          - aircraft
+          - vessel
+          example: company
+          nullable: true
+          type: string
+      required:
+      - entityName
+      type: object
+    SigmaidFact:
+      properties:
+        label:
+          example: Notes
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        value:
+          example: <text>
+          type: string
+      type: object
+    ResponseSearchParameters:
+      properties:
+        aliases:
+          items:
+            example: Ingen Corp.
+            type: string
+          nullable: true
+          type: array
+        countries:
+          items:
+            example: CR
+            type: string
+          nullable: true
+          type: array
+        dob:
+          nullable: true
+          type: string
+        entityType:
+          example: company
+          type: string
+      type: object
+    SigmaidEdge:
+      properties:
+        edgeID:
+          description: A unique identifier for this edge.
+          type: string
+        extendedRelationshipData:
+          $ref: '#/components/schemas/SigmaidExtendedRelationshipData'
+        fromNode:
+          description: The SigmaID of the node that this edge starts from.
+          type: string
+        inverseRelationship:
+          description: The normalized relationship in the inverse direction.
+          example: Is Subsidiary Of
+          type: string
+        relationship:
+          description: The normalized relationship, as determined by SigmaID's NLP models.
+          example: Has Subsidiary
+          type: string
+        relationshipDenotesOwnership:
+          description: Whether this relationship imparts ownership or control. For example, 'Has Subsidiary' would have this field set to true, while 'Is Officer Of'' would have it set to false.
+          type: boolean
+        toNode:
+          description: The SigmaID of the node that this edge points to.
+          type: string
+        unnormalizedRelationship:
+          description: The raw text of the relationship as it appears in the source data.
+          type: string
+      type: object
+    ResponseRiskMetadata:
+      properties:
+        newsMetadata:
+          description: The news events that are currently detected
+          items:
+            $ref: '#/components/schemas/ResponseNewsMetadata'
+          nullable: true
+          type: array
+        pepLevels:
+          description: The PEP levels that are currently detected
+          items:
+            example: PEP Level 1
+            type: string
+          nullable: true
+          type: array
+        sanctionLists:
+          description: The sanction lists that are currently detected
+          items:
+            example: sanctions_ofac
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ResponseIndicators:
+      properties:
+        acceptedRisks:
+          description: The risk indicators that have been accepted by a user in your organization. These are not considered for risk score calculation.
+          items:
+            $ref: '#/components/schemas/ResponseIndicator'
+          nullable: true
+          type: array
+        activeRisks:
+          description: The active risk indicators that are currently influencing the entity risk score.
+          items:
+            $ref: '#/components/schemas/ResponseIndicator'
+          nullable: true
+          type: array
+        risksRequiringReview:
+          description: Used only for user-review-enabled clients. Indicators that have been escalated for review, but have not yet been reviewed.
+          items:
+            $ref: '#/components/schemas/ResponseIndicator'
+          type: array
+      type: object
+    ResponseEntityDispositionState:
+      properties:
+        dispositionSetAtTime:
+          description: The time when the disposition was last set
+          example: '2020-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        dispositionSetByUserName:
+          description: The name of the user who last set the disposition
+          example: John Hammond
+          nullable: true
+          type: string
+        dispositionSetByUserURN:
+          description: The URN of the user who last set the disposition
+          example: urn:sigma:user:f6ba1259b3a35de80aab7733c5d5
+          nullable: true
+          type: string
+        dispositionState:
+          description: The current disposition state of the entity. Should be unsnaked and titlecased before UI display
+          example: pending
+          type: string
+      type: object
+    RequestSingleEntityUploadRequestPublic:
+      properties:
+        entityGroupIDs:
+          items:
+            minimum: 0
+            type: integer
+          nullable: true
+          type: array
+        filterSetID:
+          minimum: 0
+          type: integer
+        search:
+          $ref: '#/components/schemas/SigmaidBasicSearchParams'
+      required:
+      - filterSetID
+      - entityGroupIDs
+      type: object
+    ResponseMinimalEntityGroup:
+      properties:
+        entityGroupName:
+          type: string
+        id:
+          minimum: 0
+          type: integer
+      type: object
+    ResponseTaskProgress:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        entityGroupNames:
+          items:
+            type: string
+          nullable: true
+          type: array
+        id:
+          type: string
+        taskStatus:
+          default: Working
+          enum:
+          - Working
+          - Done
+          - Failed
+          type: string
+        totalEntities:
+          type: integer
+      type: object
+    ResponseNote:
+      properties:
+        entityUrn:
+          type: string
+        id:
+          minimum: 0
+          type: integer
+        note:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        userName:
+          type: string
+        userUrn:
+          type: string
+      type: object
+    ResponseDecisionState:
+      properties:
+        decidedByDefault:
+          type: boolean
+        decisionedAgainst:
+          type: boolean
+        hasDecision:
+          type: boolean
+        notes:
+          type: string
+        rationale:
+          items:
+            type: string
+          nullable: true
+          type: array
+        reviewSubmittedAt:
+          type: string
+        reviewedByUserName:
+          type: string
+        reviewedByUserURN:
+          type: string
+        wasDecisionMadeAgainstThisVersion:
+          type: boolean
+      type: object
+    SigmaidBasicEntityResult:
+      properties:
+        entityName:
+          example: InGen Corporation
+          type: string
+        entityType:
+          example: company
+          type: string
+        sigmaID:
+          example: 3BX869NCJTZ5K
+          type: string
+      type: object
+    SigmaidFacetAircraft:
+      properties:
+        manufactureDates:
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        models:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        operators:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        otherIdentifiers:
+          items:
+            $ref: '#/components/schemas/SigmaidIdentification'
+          nullable: true
+          type: array
+        serialNumbers:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        tailNumbers:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    ResponseMatches:
+      properties:
+        matchesRequiringReview:
+          description: Used only for user-review-enabled clients. Matches that have been escalated for review, but have not yet been reviewed.
+          items:
+            $ref: '#/components/schemas/ResponseMatch'
+          type: array
+        negativelyDecisionedMatches:
+          description: Matches that a user in your organization has marked as not a valid match. These are not considered for risk, indicators, and profile data in the entity.
+          items:
+            $ref: '#/components/schemas/ResponseMatch'
+          nullable: true
+          type: array
+        trueMatches:
+          description: Matches that are in-force for this entity. These influence risk, indicators, and profile data.
+          items:
+            $ref: '#/components/schemas/ResponseMatch'
+          nullable: true
+          type: array
+      type: object
+    CommonEntitySource:
+      properties:
+        sourceID:
+          description: The ID of the process run that created the entity
+          type: string
+        sourceType:
+          description: Which kind of process created or referenced the entity
+          type: string
+      type: object
+    SigmaidExtendedRelationshipData:
+      properties:
+        asOfDate:
+          description: The date this relationship data was reported as of.
+          type: string
+        currency:
+          description: The currency of the monetary value.
+          type: string
+        endDate:
+          description: The date this relationship ended.
+          type: string
+        former:
+          description: Whether this relationship is no longer active.
+          type: boolean
+        monetaryValue:
+          description: The monetary value associated with this relationship.
+          type: string
+        numShares:
+          description: The number of shares held in this relationship.
+          type: string
+        percent:
+          description: The ownership or control percentage associated with this relationship.
+          type: string
+        startDate:
+          description: The date this relationship began.
+          type: string
+        ultimateSources:
+          description: The original data sources for this relationship.
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    SigmaidSourcesByIntegration:
+      properties:
+        key:
+          type: string
+        lastUpdated:
+          format: date-time
+          nullable: true
+          type: string
+        matches:
+          items:
+            type: string
+          nullable: true
+          type: array
+        matchesOriginated:
+          type: integer
+        name:
+          type: string
+        ultimateSources:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ResponseMatch:
+      properties:
+        aliases:
+          items:
+            example: InGen Corp.
+            type: string
+          nullable: true
+          type: array
+        birthDates:
+          description: Birth dates of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        decisioning:
+          $ref: '#/components/schemas/ResponseDecisionState'
+        decisioningTimeline:
+          items:
+            $ref: '#/components/schemas/ResponseDecisionTimelineState'
+          nullable: true
+          type: array
+        entityName:
+          example: InGen Corporation
+          type: string
+        entityType:
+          example: company
+          nullable: true
+          type: string
+        foundationDates:
+          description: Foundation dates of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        genders:
+          description: Listed genders of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        identifiers:
+          description: Identification numbers of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidIdentification'
+          nullable: true
+          type: array
+        indicatorSummaries:
+          items:
+            $ref: '#/components/schemas/SigmaidIndicatorSummary'
+          nullable: true
+          type: array
+        locations:
+          items:
+            $ref: '#/components/schemas/SigmaidLocation'
+          nullable: true
+          type: array
+        matchDOB:
+          description: The match date from your search date of birth and date of birth proximity
+          example: '1948-01-15T00:00:00Z'
+          type: string
+        matchLocation:
+          description: The match location from your search countries and location proximity
+          example: us
+          type: string
+        matchName:
+          description: The alias or name that was most similar to your search term
+          type: string
+        matchStrength:
+          description: The match strength of the matchName to your search term
+          example: 0.8
+          type: number
+        riskMetadata:
+          $ref: '#/components/schemas/ResponseRiskMetadata'
+        riskScore:
+          type: number
+        sigmaID:
+          example: 3BX869NCJTZ5K
+          type: string
+      type: object
+    ResponseFacetInfo:
+      properties:
+        aircraft:
+          $ref: '#/components/schemas/SigmaidFacetAircraft'
+        company:
+          $ref: '#/components/schemas/SigmaidFacetCompany'
+        person:
+          $ref: '#/components/schemas/SigmaidFacetPerson'
+        vessel:
+          $ref: '#/components/schemas/SigmaidFacetVessel'
+      type: object
+  securitySchemes:
+    apiKey:
+      description: API Key
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Sigma360 Product Information
+  url: https://sigma360.com

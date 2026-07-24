@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@sigma360.com
+    name: Sigma Customer Success Team
+  description: "### API Concepts\nThis API is designed to help you interact and integrate with Sigma360. You can use it to create new entities, receive notifications about changes to your entities, and retrieve information about your entities. All aspects of a Sigma360 entity can be retrieved through this API.\n\n#### Screening\nScreening identifies: risks, KYC details, news and other critical information based on the provided entity name. The results returned are determined by the pre-defined Filter Set (See below for more details).  \n\n##### Monitoring\nMonitoring will perform a continuous, ongoing screening function, where you can expect to receive alerts and updates about changes to your entities without needing to manually trigger a screening event.\nAn entity is under continuous monitoring if it appears in the 'Monitoring' tab and is not archived. Archiving an entity will suppress all alerts and updates for that entity.\n\n##### Alerts\nAlerts are discreet work items that bring a detected risk to an analyst's attention. You can find alerts in the UI's 'Alerts' tab. \nEvery monitored entity will create alerts as risks are detected. When you are performing a one-off screen, you can specify whether or not you want durable, UI-visible alerts to be created. Alerts created in this way will be visible together with alerts created through monitoring. \n\n\n#### Webhooks\nSeveral events will fire an out-of-band request back to your systems to inform you of data changes or allow you to take action.\n1. Entity Updated - changes to Matches, Indicators, KYC data or News\n2. Entity Creation Finished - a bulk entity creation job has completed\n\nNote that all Webhooks fire against a url provided by you during onboarding. If you need to change this url, please contact Sigma Customer Success.\n\n#### Filter Sets\nMonitoring and screening both use Filter Sets to configure returns and manage true and false positives according to organizational risk appetite.\nFor detailed information on ‘Filter Sets’ - contact Support: [support\\@sigmaratings.com](mailto:support\\@sigmaratings.com).\nScreening response data is organized by: Indicators, News and KYC details. \nFor more information on Indicators, News and KYC data see:[Sigma360 Indicators & Global Data](https://6879283.fs1.hubspotusercontent-na1.net/hubfs/6879283/02%20Product%20Documents/Sigma360%20Indicators%20&%20Global%20Data.pdf). \n\n\n#### Conventions and Definitions\nAll entities are identified by a unique Sigma360 Entity ID (URN). These are stable over the entire lifetime of the entity.\n\nAll dates are expected in RFC3339 format or part thereof, e.g. \"2006-01-02T15:04:05Z07:00\".\n\nAll countries are expected to be in [ISO 3166-1 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements), e.g. \"US\", or \"GB\".\nIn general, when a filter is not specified, the default is to return all entities for that field.\n\n##### Rate Limiting\nBy default, we impose a maximum of 100 requests per second per account. If you exceed this limit, you will receive a 429 response codes for the extra requests.\nWe encourage you to aggressively retry requests that were rate-limited, as these do not count against the limit. The limits \ndo not carry over and do not have any memory of previous rate limit events. If you are consistently hitting rate limits, please contact Sigma Customer Success.\n\n##### UI Only tasks\nCertain administrative tasks are limited to the UI and are not available via API. These are:\n1. Creation and maintenance of Filter Sets\n2. Changing the group of one or more entities\n3. Changing the Filter Set for one ore more entities\n4. Review workflow\n"
+  title: Sigma360 Account Informational API
+  version: v2.0.1
+  x-logo:
+    altText: Sigma360
+    href: https://sigma360.com
+    url: logo.png
+servers:
+- url: https://api.sigma360.com/external/v2
+security:
+- apiKey: []
+tags:
+- description: Informational endpoints
+  name: Informational
+paths:
+  /info/sources:
+    get:
+      description: This endpoint will return a list of all generally-available sources in the Sigma platform, and the last time they were updated. ReportDataSources matches what is available in the UI, under the 'Reports' tab.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigmaidDataSourcesResponse'
+          description: OK
+        '400':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Bad Request
+        '401':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unauthorized
+        '429':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Too Many Requests
+        '500':
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Internal Server Error
+      security:
+      - apiKey: []
+      summary: Get update times for all sources
+      tags:
+      - Informational
+components:
+  schemas:
+    SigmaidIntegrationInfo:
+      properties:
+        firstIngestedDate:
+          format: date-time
+          type: string
+        key:
+          type: string
+        lastRunDate:
+          format: date-time
+          type: string
+      type: object
+    SigmaidDataSourcesResponse:
+      properties:
+        rawDataSources:
+          additionalProperties:
+            $ref: '#/components/schemas/SigmaidIntegrationInfo'
+          nullable: true
+          type: object
+        reportDataSources:
+          additionalProperties:
+            $ref: '#/components/schemas/SigmaidIntegrationLastUpdated'
+          nullable: true
+          type: object
+        reportDataSourcesBuckets:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: object
+      type: object
+    SigmaidIntegrationLastUpdated:
+      properties:
+        lastUpdated:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    apiKey:
+      description: API Key
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Sigma360 Product Information
+  url: https://sigma360.com
