@@ -1,0 +1,84 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sigma-ratings-openapi-original.json (webhooks)
+spec_type: AsyncAPI
+asyncapi: 3.0.0
+info:
+  title: Sigma360 Webhooks
+  version: v2.0.1
+  description: >-
+    Event surface for Sigma360; webhook callbacks are delivered to your registered HTTPS endpoint
+    when monitored entities change. Derived from the OpenAPI 3.1 webhooks object published at
+    docs.sigma360.com/api. Trigger a test delivery via GET /utils/send-webhook-test.
+  contact:
+    name: Sigma Customer Success Team
+    email: support@sigma360.com
+defaultContentType: application/json
+channels:
+  EntityCreated:
+    address: null
+    title: Entity Created
+    messages:
+      EntityCreatedMessage:
+        name: EntityCreated
+        title: Entity Created
+        payload:
+          $ref: openapi/sigma-ratings-openapi-original.json#/components/schemas/ResponseTaskCompletionReportPing
+  EntityDispositionChanged:
+    address: null
+    title: Entity Disposition Changed
+    messages:
+      EntityDispositionChangedMessage:
+        name: EntityDispositionChanged
+        title: Entity Disposition Changed
+        payload:
+          $ref: openapi/sigma-ratings-openapi-original.json#/components/schemas/ResponseEntityDispositionChangePing
+  HistoryUpdated:
+    address: null
+    title: History Updated
+    messages:
+      HistoryUpdatedMessage:
+        name: HistoryUpdated
+        title: History Updated
+        payload:
+          $ref: openapi/sigma-ratings-openapi-original.json#/components/schemas/ResponseEntityHistoryPing
+  NewCaseManagementEntry:
+    address: null
+    title: New Case Management Entry
+    messages:
+      NewCaseManagementEntryMessage:
+        name: NewCaseManagementEntry
+        title: New Case Management Entry
+        payload:
+          $ref: openapi/sigma-ratings-openapi-original.json#/components/schemas/ResponseCaseManagementIntentPing
+operations:
+  receiveEntityCreated:
+    action: receive
+    channel:
+      $ref: '#/channels/EntityCreated'
+    summary: Receive the 'Entity Created' webhook from Sigma360 at your registered callback URL.
+  receiveEntityDispositionChanged:
+    action: receive
+    channel:
+      $ref: '#/channels/EntityDispositionChanged'
+    summary: Receive the 'Entity Disposition Changed' webhook from Sigma360 at your registered callback URL.
+  receiveHistoryUpdated:
+    action: receive
+    channel:
+      $ref: '#/channels/HistoryUpdated'
+    summary: Receive the 'History Updated' webhook from Sigma360 at your registered callback URL.
+  receiveNewCaseManagementEntry:
+    action: receive
+    channel:
+      $ref: '#/channels/NewCaseManagementEntry'
+    summary: Receive the 'New Case Management Entry' webhook from Sigma360 at your registered callback URL.
+
+# --- API Evangelist provenance -------------------------------------------
+x-superseded-by:
+  reason: >-
+    Provider publishes this event surface themselves in as-published OpenAPI; this document was authored by API Evangelist before that source was harvested.
+  published_spec: all/sigma-ratings/openapi/_original/sigma-ratings-openapi-original.json
+  published_event_object: webhooks
+  published_events: 4
+  status: superseded
+  reviewed: '2026-07-31'

@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sigma360.com/api
+type: Webhooks
+delivery: HTTPS POST to your registered callback URL; JSON payloads
+test_trigger: GET /utils/send-webhook-test
+events:
+- name: Entity Created
+  payload_schema: ResponseTaskCompletionReportPing
+- name: Entity Disposition Changed
+  payload_schema: ResponseEntityDispositionChangePing
+- name: History Updated
+  payload_schema: ResponseEntityHistoryPing
+- name: New Case Management Entry
+  payload_schema: ResponseCaseManagementIntentPing
