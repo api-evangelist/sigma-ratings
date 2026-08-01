@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sigma360.com/docs/release-notes
+versioning:
+  scheme: uri-path
+  current: v2
+  base: https://api.sigma360.com/external/v2
+  spec_version: v2.0.1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/sunset policy published.
+sla:
+  url: null
+status_page: https://sigma360status.com/
+changelog: https://docs.sigma360.com/docs/release-notes
+deprecated_operations: []

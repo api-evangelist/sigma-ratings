@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+host: https://api.sigma360.com
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+note: >-
+  Probed api., www., docs., and app. sigma360.com hosts. No genuine well-known documents were found.
+  app.sigma360.com returns a 200 SPA login shell for every path (not real documents), so those are not
+  recorded as hits.

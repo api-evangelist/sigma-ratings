@@ -1,0 +1,110 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sigma-ratings-openapi-original.json
+format: http-status-plaintext
+envelope:
+  media_type: text/plain
+  note: 4xx/5xx responses return a plain-text message body (not RFC 9457 problem+json).
+problems:
+- status: 400
+  title: Bad Request
+  remediation: Validate the request body/params against the schema before retrying.
+  operations:
+  - GET /account/status
+  - GET /entities/by-task-id/current-state/{taskID}
+  - GET /entities/create/status/{taskID}
+  - GET /entity/{entityURN}
+  - GET /groups
+  - GET /info/sources
+  - GET /news/event/{uuid}/article/{hash}
+  - GET /utils/send-webhook-test"
+  - POST /alerts
+  - POST /entities
+  - POST /entities/create
+  - POST /entities/create/assume-clean
+  - POST /entities/create/enqueue
+  - POST /entities/histories
+  - POST /entity/{entityURN}/history
+  - POST /entity/{entityURN}/news
+  - POST /entity/{entityURN}/profile-by-matches
+  - POST /group
+  - POST /screening/full-single
+  - PUT /entities/archive
+- status: 401
+  title: Unauthorized
+  remediation: Provide a valid API key in the Authorization header.
+  operations:
+  - GET /account/status
+  - GET /entities/by-task-id/current-state/{taskID}
+  - GET /entities/create/status/{taskID}
+  - GET /entity/{entityURN}
+  - GET /groups
+  - GET /info/sources
+  - GET /news/event/{uuid}/article/{hash}
+  - GET /utils/send-webhook-test"
+  - POST /alerts
+  - POST /entities
+  - POST /entities/create
+  - POST /entities/create/assume-clean
+  - POST /entities/create/enqueue
+  - POST /entities/histories
+  - POST /entity/{entityURN}/history
+  - POST /entity/{entityURN}/news
+  - POST /entity/{entityURN}/profile-by-matches
+  - POST /group
+  - POST /screening/full-single
+  - PUT /entities/archive
+- status: 425
+  title: Too Early
+  remediation: Resource not ready yet (async task still processing); wait and retry via the task-status
+    endpoint.
+  operations:
+  - GET /entities/by-task-id/current-state/{taskID}
+- status: 429
+  title: Too Many Requests
+  remediation: Rate limit exceeded; back off and retry after a delay.
+  operations:
+  - GET /account/status
+  - GET /entities/by-task-id/current-state/{taskID}
+  - GET /entities/create/status/{taskID}
+  - GET /entity/{entityURN}
+  - GET /groups
+  - GET /info/sources
+  - GET /news/event/{uuid}/article/{hash}
+  - GET /utils/send-webhook-test"
+  - POST /alerts
+  - POST /entities
+  - POST /entities/create
+  - POST /entities/create/assume-clean
+  - POST /entities/create/enqueue
+  - POST /entities/histories
+  - POST /entity/{entityURN}/history
+  - POST /entity/{entityURN}/news
+  - POST /entity/{entityURN}/profile-by-matches
+  - POST /group
+  - POST /screening/full-single
+  - PUT /entities/archive
+- status: 500
+  title: Internal Server Error
+  remediation: Transient server error; retry with backoff, contact support@sigma360.com if it persists.
+  operations:
+  - GET /account/status
+  - GET /entities/by-task-id/current-state/{taskID}
+  - GET /entities/create/status/{taskID}
+  - GET /entity/{entityURN}
+  - GET /groups
+  - GET /info/sources
+  - GET /news/event/{uuid}/article/{hash}
+  - GET /utils/send-webhook-test"
+  - POST /alerts
+  - POST /entities
+  - POST /entities/create
+  - POST /entities/create/assume-clean
+  - POST /entities/create/enqueue
+  - POST /entities/histories
+  - POST /entity/{entityURN}/history
+  - POST /entity/{entityURN}/news
+  - POST /entity/{entityURN}/profile-by-matches
+  - POST /group
+  - POST /screening/full-single
+  - PUT /entities/archive

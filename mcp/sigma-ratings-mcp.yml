@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/sigma-ratings-openapi-original.json
+note: Candidate tool list derived from OpenAPI operations; no official hosted MCP server was found.
+server:
+  name: sigma360
+  transport: http
+tools:
+- name: get_account_status
+  description: Retrieve account status
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /account/status
+- name: post_alerts
+  description: Retrieve a listing of Alerts
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /alerts
+- name: post_entities
+  description: Retrieve a paginated list of entity summaries
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entities
+- name: put_entities_archive
+  description: Archive one or more entities
+  source_operation: openapi/sigma-ratings-openapi-original.json#PUT /entities/archive
+- name: get_entities_by_task_id_current_state
+  description: Retrieve the entities created by a bulk entity creation task
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /entities/by-task-id/current-state/{taskID}
+- name: post_entities_create
+  description: Create one Entity
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entities/create
+- name: post_entities_create_assume_clean
+  description: Migrate Pre-reviewed Entities into Sigma360 (Skip Risk and Alerts)
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entities/create/assume-clean
+- name: post_entities_create_enqueue
+  description: Enqueue a bulk entity creation task
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entities/create/enqueue
+- name: get_entities_create_status
+  description: Check on the progress or errors of a bulk entity creation task
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /entities/create/status/{taskID}
+- name: post_entities_histories
+  description: Retrieve history events for all entities in a paginated stream
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entities/histories
+- name: get_entity
+  description: Retrieve an entity's current state
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /entity/{entityURN}
+- name: post_entity_history
+  description: Retrieve a paginated list of entity history events
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entity/{entityURN}/history
+- name: post_entity_news
+  description: Retrieve Sigma News Events for a given entity
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entity/{entityURN}/news
+- name: post_entity_profile_by_matches
+  description: Retrieve a profile information, divided by match
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /entity/{entityURN}/profile-by-matches
+- name: post_group
+  description: Create a single entity group
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /group
+- name: get_groups
+  description: Retrieve all entity groups
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /groups
+- name: get_info_sources
+  description: Get update times for all sources
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /info/sources
+- name: get_news_event_article
+  description: Retrieve the full body of a referenced news article
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /news/event/{uuid}/article/{hash}
+- name: post_screening_full_single
+  description: Real-time Single Screening
+  source_operation: openapi/sigma-ratings-openapi-original.json#POST /screening/full-single
+- name: get_utils_send_webhook_test"
+  description: Perform a test delivery of your webhook connection
+  source_operation: openapi/sigma-ratings-openapi-original.json#GET /utils/send-webhook-test"

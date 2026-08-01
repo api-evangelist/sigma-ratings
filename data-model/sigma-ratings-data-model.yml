@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sigma-ratings-openapi-original.json
+primary_id: entityURN (URN identifying a Sigma360 entity)
+entities:
+- name: Entity
+  id_field: entityURN
+  description: A monitored person or organization ("My Entity") screened against Sigma360 risk data.
+- name: EntityGroup
+  id_field: groupURN
+  description: A named grouping of monitored entities.
+- name: Alert
+  id_field: alertID
+  description: A risk alert raised against an entity when indicators match the filter set.
+- name: EntityHistory
+  id_field: entityURN
+  description: The change history / timeline for a monitored entity.
+- name: NewsEvent
+  id_field: uuid
+  description: An adverse-media news event linked to an entity, containing articles.
+- name: Source
+  id_field: sourceID
+  description: A data source / watchlist / registry feeding screening results.
+- name: Task
+  id_field: taskID
+  description: An asynchronous entity-creation task tracked to completion.
+relationships:
+- from: EntityGroup
+  to: Entity
+  type: has_many
+  via: entityURN
+- from: Entity
+  to: EntityGroup
+  type: belongs_to
+  via: groupURN
+- from: Entity
+  to: Alert
+  type: has_many
+  via: entityURN
+- from: Entity
+  to: EntityHistory
+  type: has_one
+  via: entityURN
+- from: Entity
+  to: NewsEvent
+  type: has_many
+  via: entityURN
+- from: Task
+  to: Entity
+  type: has_one
+  via: taskID
+- from: Alert
+  to: Entity
+  type: belongs_to
+  via: entityURN
+note: Derived from OpenAPI paths/parameters (entityURN, groupURN, taskID, uuid) and schema families.

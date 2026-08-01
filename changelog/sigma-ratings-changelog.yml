@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sigma360.com/docs/release-notes
+scheme: dated release notes
+current: '2026-06-24 (release 052)'
+entries:
+- id: '052'
+  date: '2026-06-24'
+  type: data
+  highlight: Five new datasets incl. Colombia Commercial Registry (RUES), Australia/Brazil/Norway registries — +132.7M entities, +52M relationships.
+- id: '051'
+  date: '2026-06-18'
+  type: feature
+  highlight: Dynamic Dispositioning in Filter Set — the system can auto-revert a Cleared entity to Pending when selected risk indicators trigger a new alert.
+- id: '050'
+  date: '2026-06-15'
+  type: data
+  highlight: New sanctions list — Kuwait Ministry of Foreign Affairs designated persons.
+- id: '049'
+  date: '2026-06-11'
+  type: data
+  highlight: New regulator data sources — Mexico SIPRES and British Virgin Islands FSC.
+note: 52 dated release notes published (001 2023-08-29 through 052 2026-06-24); recent window captured here.

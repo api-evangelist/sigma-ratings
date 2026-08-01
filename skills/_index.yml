@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/sigma-ratings-openapi-original.json
+skills:
+- file: sigma-ratings-screen-entity.md
+  name: Screen an entity against Sigma360 risk data
+  api: openapi/sigma-ratings-openapi-original.json
+  operations:
+  - GET /account/status
+  - GET /info/sources
+  - POST /screening/full-single
+- file: sigma-ratings-monitor-entity.md
+  name: Create and monitor an entity
+  api: openapi/sigma-ratings-openapi-original.json
+  operations:
+  - POST /entities/create/enqueue
+  - GET /entities/create/status/{taskID}
+  - GET /entity/{entityURN}
+  - POST /entity/{entityURN}/history
+  - PUT /entities/archive
+- file: sigma-ratings-handle-webhooks.md
+  name: Handle alerts and webhooks
+  api: openapi/sigma-ratings-openapi-original.json
+  operations:
+  - GET /utils/send-webhook-test
+  - POST /alerts
+  - GET /entity/{entityURN}
+note: >-
+  Skills are grounded in real method+path operations from the harvested spec (which omits operationIds).

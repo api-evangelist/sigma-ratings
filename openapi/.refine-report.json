@@ -1,0 +1,26 @@
+{
+  "provider": "sigma-ratings",
+  "sources": [
+    "sigma-ratings-account-api-openapi.yml",
+    "sigma-ratings-informational-api-openapi.yml",
+    "sigma-ratings-monitoring-entity-creation-api-openapi.yml",
+    "sigma-ratings-monitoring-entity-management-api-openapi.yml",
+    "sigma-ratings-monitoring-history-api-openapi.yml",
+    "sigma-ratings-one-off-screening-api-openapi.yml",
+    "sigma-ratings-utilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "sigma-ratings-account-api-openapi.yml",
+    "sigma-ratings-informational-api-openapi.yml",
+    "sigma-ratings-monitoring-entity-creation-api-openapi.yml",
+    "sigma-ratings-monitoring-entity-management-api-openapi.yml",
+    "sigma-ratings-monitoring-history-api-openapi.yml",
+    "sigma-ratings-one-off-screening-api-openapi.yml",
+    "sigma-ratings-utilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

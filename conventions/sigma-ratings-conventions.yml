@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sigma360.com/api
+authentication:
+  style: API key
+  location: Authorization header
+  ref: authentication/sigma-ratings-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header is documented in the spec.
+pagination:
+  style: cursor + page
+  params:
+  - cursor
+  - page
+  - pageSize
+  - sortBy
+  - sortOrder
+versioning:
+  style: uri-path
+  current: v2
+  base: https://api.sigma360.com/external/v2
+errors:
+  envelope: text/plain body with HTTP status code
+  rfc9457: false
+  ref: errors/sigma-ratings-problem-types.yml
+rate_limiting:
+  signal: HTTP 429 Too Many Requests
+  headers_documented: false
+async:
+  note: Entity creation is asynchronous — POST /entities/create/enqueue returns a taskID; poll GET /entities/create/status/{taskID} or GET /entities/by-task-id/current-state/{taskID}.
+webhooks:
+  ref: asyncapi/sigma-ratings-webhooks.yml
+  events:
+  - Entity Created
+  - Entity Disposition Changed
+  - History Updated
+  - New Case Management Entry

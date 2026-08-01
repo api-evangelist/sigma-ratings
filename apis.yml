@@ -1,25 +1,209 @@
 aid: sigma-ratings
-name: Sigma Ratings
-description: Sigma Ratings is a company surfaced as a portfolio company of techstars and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sigma-ratings.png
+name: Sigma360
+description: >-
+  Sigma360 (formerly Sigma Ratings) is a financial-crime-compliance platform for sanctions and
+  watchlist screening, AML investigations, adverse-media screening, enhanced due diligence, perpetual
+  KYC, third-party risk management, country risk ratings, and counterparty credit-risk monitoring. Its
+  REST API (OpenAPI 3.1, v2.0.1) lets you screen entities against risk data, enroll them for continuous
+  monitoring, retrieve risk profiles and change history, and subscribe to webhook events — authenticated
+  with an API key over https://api.sigma360.com/external/v2.
 url: https://raw.githubusercontent.com/api-evangelist/sigma-ratings/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: api-harvested
+x-former-name: Sigma Ratings
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Compliance
+- Financial Crime
+- KYC
+- AML
+- Sanctions Screening
+- Risk Intelligence
+- RegTech
+- Adverse Media
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: sigma-ratings:sigma-ratings-account-api
+  name: Sigma360 Account API
+  description: Account management
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-account-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-informational-api
+  name: Sigma360 Informational API
+  description: Informational endpoints
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - Informational
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-informational-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-monitoring-entity-creation-api
+  name: 'Sigma360 Monitoring: Entity Creation API'
+  description: Creating new 'My Entities'
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - 'Monitoring: Entity Creation'
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-monitoring-entity-creation-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-monitoring-entity-management-api
+  name: 'Sigma360 Monitoring: Entity Management API'
+  description: Browsing and retrieving monitored entities
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - 'Monitoring: Entity Management'
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-monitoring-entity-management-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-monitoring-history-api
+  name: 'Sigma360 Monitoring: History API'
+  description: Retrieving monitoring history
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - 'Monitoring: History'
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-monitoring-history-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-one-off-screening-api
+  name: Sigma360 One-Off Screening API
+  description: Screening against Sigma360's risk data
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - One-Off Screening
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-one-off-screening-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-utilities-api
+  name: Sigma360 Utilities API
+  description: General utilities
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-utilities-api-openapi.yml
+  - type: APIReference
+    url: https://docs.sigma360.com/api
+  - type: Documentation
+    url: https://docs.sigma360.com/
 common:
 - type: Website
-  url: https://sigmaratings.com/
+  url: https://www.sigma360.com/
+- type: DeveloperPortal
+  url: https://docs.sigma360.com/
+- type: Documentation
+  url: https://docs.sigma360.com/
+- type: APIReference
+  url: https://docs.sigma360.com/api
+- type: GettingStarted
+  url: https://docs.sigma360.com/docs/user-guide/intro
+- type: ChangeLog
+  url: https://docs.sigma360.com/docs/release-notes
+- type: StatusPage
+  url: https://sigma360status.com/
+- type: SignUp
+  url: https://www.sigma360.com/free-trial/
+- type: Login
+  url: https://app.sigma360.com/
+- type: Support
+  url: mailto:support@sigma360.com
+- type: PrivacyPolicy
+  url: https://www.sigma360.com/privacy-policy/
+- type: Security
+  url: https://www.sigma360.com/security-and-disclosure-policy/
+- type: TrustCenter
+  url: https://trust.sigma360.com/
+- type: Compliance
+  url: https://trust.sigma360.com/
+- type: Authentication
+  url: authentication/sigma-ratings-authentication.yml
+- type: Conventions
+  url: conventions/sigma-ratings-conventions.yml
+- type: ErrorCatalog
+  url: errors/sigma-ratings-problem-types.yml
+- type: DataModel
+  url: data-model/sigma-ratings-data-model.yml
+- type: Lifecycle
+  url: lifecycle/sigma-ratings-lifecycle.yml
+- type: Conformance
+  url: conformance/sigma-ratings-conformance.yml
+- type: Overlay
+  url: overlays/sigma-ratings-openapi-overlay.yaml
+- type: AsyncAPI
+  url: asyncapi/sigma-ratings-webhooks-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/sigma-ratings-webhooks.yml
+- type: MCPServer
+  url: mcp/sigma-ratings-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/sigma-ratings-llms.txt
+- type: VulnerabilityDisclosure
+  url: security/sigma-ratings-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/sigma-ratings-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1

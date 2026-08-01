@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+url: https://trust.sigma360.com/
+platform: Vanta
+certifications:
+- SOC 2 Type II
+- GDPR
+evidence:
+- source: https://www.sigma360.com/
+  keywords:
+  - SOC 2 Type II
+  - GDPR
+- source: https://trust.sigma360.com/
+  keywords:
+  - vanta trust center
+note: >-
+  trust.sigma360.com is a Vanta-hosted trust center (JS-rendered). SOC 2 Type II and GDPR compliance are
+  stated verbatim on sigma360.com; additional named frameworks were not confirmable from the raw trust-center
+  shell and were not assumed.

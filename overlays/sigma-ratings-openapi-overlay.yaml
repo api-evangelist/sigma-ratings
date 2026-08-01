@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Sigma360 API
+  version: 1.0.0
+extends: openapi/sigma-ratings-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-notes: >-
+      Harvested from the redocusaurus-embedded spec at docs.sigma360.com/api. The original spec
+      omits operationIds; agents should address operations by method + path.
+- target: $.paths['/screening/full-single'].post
+  update:
+    x-agentic-access:
+      action-class: read
+      consequence: read

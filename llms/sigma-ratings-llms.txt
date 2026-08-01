@@ -1,0 +1,25 @@
+# Sigma360 (formerly Sigma Ratings)
+
+> Sigma360 is a financial-crime-compliance platform providing sanctions & watchlist screening, AML investigations, adverse-media screening, enhanced due diligence, perpetual KYC, third-party risk management, country risk ratings, and counterparty credit risk monitoring. Its REST API (OpenAPI 3.1, v2.0.1) lets you screen entities, enroll them for continuous monitoring, retrieve risk profiles and history, and receive webhook events. Auth is an API key in the Authorization header. Base URL: https://api.sigma360.com/external/v2.
+
+## APIs
+- [Sigma360 API reference](https://docs.sigma360.com/api): 20 operations across Account, One-Off Screening, Entity Creation/Management, History, Utilities, Informational, and Webhooks.
+- [Developer docs](https://docs.sigma360.com/): getting started, user guide, and release notes.
+- [Getting started / user guide](https://docs.sigma360.com/docs/user-guide/intro)
+
+## Specs & artifacts
+- [OpenAPI 3.1 (original)](openapi/sigma-ratings-openapi-original.json)
+- [Authentication](authentication/sigma-ratings-authentication.yml): apiKey in Authorization header
+- [Conventions](conventions/sigma-ratings-conventions.yml): pagination, versioning, error envelope, async task model
+- [Error catalog](errors/sigma-ratings-problem-types.yml): 400/401/425/429/500, plain-text bodies
+- [Data model](data-model/sigma-ratings-data-model.yml): Entity, EntityGroup, Alert, History, NewsEvent, Source, Task
+- [Webhooks (AsyncAPI)](asyncapi/sigma-ratings-webhooks-asyncapi.yml): Entity Created, Disposition Changed, History Updated, New Case Management Entry
+- [Lifecycle](lifecycle/sigma-ratings-lifecycle.yml) · [Changelog](changelog/sigma-ratings-changelog.yml)
+- [Agent skills](skills/_index.yml): screen an entity, create & monitor an entity, handle alerts & webhooks
+
+## Company & trust
+- [Website](https://www.sigma360.com/)
+- [Status page](https://sigma360status.com/)
+- [Trust center (Vanta)](https://trust.sigma360.com/): SOC 2 Type II, GDPR
+- [Security & disclosure policy](https://www.sigma360.com/security-and-disclosure-policy/): security@sigma360.com
+- [Release notes](https://docs.sigma360.com/docs/release-notes)
