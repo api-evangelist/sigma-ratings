@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sigma360 Account Monitoring: History API",
+    "version": "v2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring: History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve history events for all entities in a paginated stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entities/histories",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will return a paginated list of all entities' history events. A history event is created whenever an entity's data changes for any reason. Only includes monitored, unarchived entities."
+        },
+        {
+          "info": {
+            "name": "Retrieve a paginated list of entity history events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entity/:entityURN/history",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              },
+              {
+                "name": "entityURN",
+                "value": "",
+                "type": "path",
+                "description": "The entity ID or URN."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will return a paginated list of entity history events for a given entity. A history event is created whenever an entity's data changes for any reason."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

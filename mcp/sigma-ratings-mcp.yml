@@ -67,3 +67,9 @@ tools:
 - name: get_utils_send_webhook_test"
   description: Perform a test delivery of your webhook connection
   source_operation: openapi/sigma-ratings-openapi-original.json#GET /utils/send-webhook-test"
+deployment:
+  mode: none
+  verified: derived
+  tools: 20
+  checked: '2026-08-12'
+  source: catalog MCP census

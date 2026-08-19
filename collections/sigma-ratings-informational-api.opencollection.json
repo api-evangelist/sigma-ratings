@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sigma360 Account Informational API",
+    "version": "v2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Informational",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get update times for all sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/info/sources",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will return a list of all generally-available sources in the Sigma platform, and the last time they were updated. ReportDataSources matches what is available in the UI, under the 'Reports' tab."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

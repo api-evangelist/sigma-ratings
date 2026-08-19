@@ -1,0 +1,2011 @@
+{
+  "item": [
+    {
+      "id": "c9e5c0b5-85d5-49cb-bbab-9028d552b692",
+      "name": "Monitoring: Entity Creation",
+      "description": {
+        "content": "Creating new 'My Entities'",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6381785e-a9fd-4435-8df6-35ea1278ee4e",
+          "name": "Create one Entity",
+          "request": {
+            "name": "Create one Entity",
+            "description": {
+              "content": "This endpoint will synchronously add one entity to your monitored entity population. This returns the full state of the entity, for convenience. If you are adding more than one entity, it is recommend that you use the bulk endpoint for performance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"search\": {\n    \"entityName\": \"<string>\",\n    \"aliases\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customFields\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"customerKey\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"entityType\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "462166cd-adfa-4b93-ad3c-6a8e56470b5b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"search\": {\n    \"entityName\": \"InGen Corporation\",\n    \"aliases\": [\n      \"InGen, InGen Corp\",\n      \"InGen, InGen Corp\"\n    ],\n    \"countries\": [\n      \"US\",\n      \"US\"\n    ],\n    \"customFields\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"customerKey\": \"ABC1234567890\",\n    \"dob\": \"1993-06-11\",\n    \"entityType\": \"company\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"archivedAt\": \"2009-06-10T15:12:28.372Z\",\n  \"createdAt\": \"1970-03-04T01:50:37.358Z\",\n  \"customFields\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"customerKey\": \"ABC1234567890\",\n  \"dispositionState\": {\n    \"dispositionSetAtTime\": \"2020-01-01T00:00:00Z\",\n    \"dispositionSetByUserName\": \"John Hammond\",\n    \"dispositionSetByUserURN\": \"urn:sigma:user:f6ba1259b3a35de80aab7733c5d5\",\n    \"dispositionState\": \"pending\"\n  },\n  \"entityGroups\": [\n    {\n      \"entityGroupName\": \"string\",\n      \"id\": 7389\n    },\n    {\n      \"entityGroupName\": \"string\",\n      \"id\": 5263\n    }\n  ],\n  \"entityName\": \"InGen Corporation\",\n  \"entitySources\": [\n    {\n      \"sourceID\": \"string\",\n      \"sourceType\": \"string\"\n    },\n    {\n      \"sourceID\": \"string\",\n      \"sourceType\": \"string\"\n    }\n  ],\n  \"entityType\": \"company\",\n  \"escalated\": false,\n  \"escalatedByUserName\": \"string\",\n  \"escalatedByUserUrn\": \"string\",\n  \"escalatedTime\": \"2020-04-30T16:07:22.697Z\",\n  \"filterSetID\": 5751,\n  \"filterSetName\": \"Investigative Due Diligence\",\n  \"hasOpenAlert\": false,\n  \"indicatorSummaries\": [\n    {\n      \"category\": \"Sanctions\",\n      \"count\": 2,\n      \"isNetwork\": false,\n      \"maxScore\": 100\n    },\n    {\n      \"category\": \"Sanctions\",\n      \"count\": 2,\n      \"isNetwork\": false,\n      \"maxScore\": 100\n    }\n  ],\n  \"indicators\": {\n    \"acceptedRisks\": [\n      {\n        \"urn\": \"urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=\",\n        \"code\": \"SAN006\",\n        \"name\": \"Appears on sanction list\",\n        \"category\": \"Sanctions\",\n        \"subcategory\": \"sanctions_swiss\",\n        \"hopsAway\": 0,\n        \"sources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"description\": \"Swiss State Secretariat for Economic Affairs\",\n        \"causalSigmaID\": {\n          \"aliases\": [\n            \"InGen, InGen Corp\",\n            \"InGen, InGen Corp\"\n          ],\n          \"birthDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entityName\": \"InGen Corporation\",\n          \"entityType\": \"company\",\n          \"foundationDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hasIndirectOwners\": false,\n          \"hasNetworkConnections\": true,\n          \"indicatorSummaries\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"locations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"matchDOB\": \"string\",\n          \"matchLocation\": \"string\",\n          \"matchName\": \"string\",\n          \"matchStrength\": 4764.294311366226,\n          \"risk\": {\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sigmaID\": \"3BX869NCJTZ5K\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"date\": \"2023-01-01T00:00:00Z\",\n        \"decisioning\": {\n          \"decidedByDefault\": true,\n          \"decisionedAgainst\": false,\n          \"hasDecision\": false,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": true,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"extras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"originatingSigmaID\": \"string\",\n        \"primaryExtras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"relationshipChain\": {\n          \"edges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entities\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"score\": 90,\n        \"sourceAttribution\": [\n          \"abcd1234//1234567890\",\n          \"abcd1234//1234567890\"\n        ]\n      },\n      {\n        \"urn\": \"urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=\",\n        \"code\": \"SAN006\",\n        \"name\": \"Appears on sanction list\",\n        \"category\": \"Sanctions\",\n        \"subcategory\": \"sanctions_swiss\",\n        \"hopsAway\": 0,\n        \"sources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"description\": \"Swiss State Secretariat for Economic Affairs\",\n        \"causalSigmaID\": {\n          \"aliases\": [\n            \"InGen, InGen Corp\",\n            \"InGen, InGen Corp\"\n          ],\n          \"birthDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entityName\": \"InGen Corporation\",\n          \"entityType\": \"company\",\n          \"foundationDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hasIndirectOwners\": true,\n          \"hasNetworkConnections\": true,\n          \"indicatorSummaries\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"locations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"matchDOB\": \"string\",\n          \"matchLocation\": \"string\",\n          \"matchName\": \"string\",\n          \"matchStrength\": 585.9747405857107,\n          \"risk\": {\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sigmaID\": \"3BX869NCJTZ5K\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"date\": \"2023-01-01T00:00:00Z\",\n        \"decisioning\": {\n          \"decidedByDefault\": true,\n          \"decisionedAgainst\": false,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": false\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"extras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_3\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"originatingSigmaID\": \"string\",\n        \"primaryExtras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"relationshipChain\": {\n          \"edges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entities\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"score\": 90,\n        \"sourceAttribution\": [\n          \"abcd1234//1234567890\",\n          \"abcd1234//1234567890\"\n        ]\n      }\n    ],\n    \"activeRisks\": [\n      {\n        \"urn\": \"urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=\",\n        \"code\": \"SAN006\",\n        \"name\": \"Appears on sanction list\",\n        \"category\": \"Sanctions\",\n        \"subcategory\": \"sanctions_swiss\",\n        \"hopsAway\": 0,\n        \"sources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"description\": \"Swiss State Secretariat for Economic Affairs\",\n        \"causalSigmaID\": {\n          \"aliases\": [\n            \"InGen, InGen Corp\",\n            \"InGen, InGen Corp\"\n          ],\n          \"birthDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entityName\": \"InGen Corporation\",\n          \"entityType\": \"company\",\n          \"foundationDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hasIndirectOwners\": false,\n          \"hasNetworkConnections\": false,\n          \"indicatorSummaries\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"locations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"matchDOB\": \"string\",\n          \"matchLocation\": \"string\",\n          \"matchName\": \"string\",\n          \"matchStrength\": 1089.9948553671834,\n          \"risk\": {\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sigmaID\": \"3BX869NCJTZ5K\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"date\": \"2023-01-01T00:00:00Z\",\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": false,\n          \"hasDecision\": false,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": false\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": true,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"extras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"originatingSigmaID\": \"string\",\n        \"primaryExtras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"relationshipChain\": {\n          \"edges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entities\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"score\": 90,\n        \"sourceAttribution\": [\n          \"abcd1234//1234567890\",\n          \"abcd1234//1234567890\"\n        ]\n      },\n      {\n        \"urn\": \"urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=\",\n        \"code\": \"SAN006\",\n        \"name\": \"Appears on sanction list\",\n        \"category\": \"Sanctions\",\n        \"subcategory\": \"sanctions_swiss\",\n        \"hopsAway\": 0,\n        \"sources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"description\": \"Swiss State Secretariat for Economic Affairs\",\n        \"causalSigmaID\": {\n          \"aliases\": [\n            \"InGen, InGen Corp\",\n            \"InGen, InGen Corp\"\n          ],\n          \"birthDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entityName\": \"InGen Corporation\",\n          \"entityType\": \"company\",\n          \"foundationDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hasIndirectOwners\": true,\n          \"hasNetworkConnections\": false,\n          \"indicatorSummaries\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"locations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"matchDOB\": \"string\",\n          \"matchLocation\": \"string\",\n          \"matchName\": \"string\",\n          \"matchStrength\": 5311.692340052967,\n          \"risk\": {\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sigmaID\": \"3BX869NCJTZ5K\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"date\": \"2023-01-01T00:00:00Z\",\n        \"decisioning\": {\n          \"decidedByDefault\": true,\n          \"decisionedAgainst\": false,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": false\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"extras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_3\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"originatingSigmaID\": \"string\",\n        \"primaryExtras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"relationshipChain\": {\n          \"edges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entities\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"score\": 90,\n        \"sourceAttribution\": [\n          \"abcd1234//1234567890\",\n          \"abcd1234//1234567890\"\n        ]\n      }\n    ],\n    \"risksRequiringReview\": [\n      {\n        \"urn\": \"urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=\",\n        \"code\": \"SAN006\",\n        \"name\": \"Appears on sanction list\",\n        \"category\": \"Sanctions\",\n        \"subcategory\": \"sanctions_swiss\",\n        \"hopsAway\": 0,\n        \"sources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"description\": \"Swiss State Secretariat for Economic Affairs\",\n        \"causalSigmaID\": {\n          \"aliases\": [\n            \"InGen, InGen Corp\",\n            \"InGen, InGen Corp\"\n          ],\n          \"birthDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entityName\": \"InGen Corporation\",\n          \"entityType\": \"company\",\n          \"foundationDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hasIndirectOwners\": true,\n          \"hasNetworkConnections\": true,\n          \"indicatorSummaries\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"locations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"matchDOB\": \"string\",\n          \"matchLocation\": \"string\",\n          \"matchName\": \"string\",\n          \"matchStrength\": 3185.393852838483,\n          \"risk\": {\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sigmaID\": \"3BX869NCJTZ5K\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"date\": \"2023-01-01T00:00:00Z\",\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": true,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"extras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_3\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"originatingSigmaID\": \"string\",\n        \"primaryExtras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"relationshipChain\": {\n          \"edges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entities\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"score\": 90,\n        \"sourceAttribution\": [\n          \"abcd1234//1234567890\",\n          \"abcd1234//1234567890\"\n        ]\n      },\n      {\n        \"urn\": \"urn:sigma:indicator:5VpYSbsw2R6UaVxFilHv_TpJ5wJZocEzMAaLvFkVJAg=\",\n        \"code\": \"SAN006\",\n        \"name\": \"Appears on sanction list\",\n        \"category\": \"Sanctions\",\n        \"subcategory\": \"sanctions_swiss\",\n        \"hopsAway\": 0,\n        \"sources\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"description\": \"Swiss State Secretariat for Economic Affairs\",\n        \"causalSigmaID\": {\n          \"aliases\": [\n            \"InGen, InGen Corp\",\n            \"InGen, InGen Corp\"\n          ],\n          \"birthDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entityName\": \"InGen Corporation\",\n          \"entityType\": \"company\",\n          \"foundationDates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hasIndirectOwners\": true,\n          \"hasNetworkConnections\": true,\n          \"indicatorSummaries\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"locations\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"matchDOB\": \"string\",\n          \"matchLocation\": \"string\",\n          \"matchName\": \"string\",\n          \"matchStrength\": 8525.288697188713,\n          \"risk\": {\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sigmaID\": \"3BX869NCJTZ5K\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"date\": \"2023-01-01T00:00:00Z\",\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": true,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"extras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"originatingSigmaID\": \"string\",\n        \"primaryExtras\": {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"relationshipChain\": {\n          \"edges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"entities\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"score\": 90,\n        \"sourceAttribution\": [\n          \"abcd1234//1234567890\",\n          \"abcd1234//1234567890\"\n        ]\n      }\n    ]\n  },\n  \"matches\": {\n    \"matchesRequiringReview\": [\n      {\n        \"aliases\": [\n          \"InGen Corp.\",\n          \"InGen Corp.\"\n        ],\n        \"birthDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"decisioning\": {\n          \"decidedByDefault\": true,\n          \"decisionedAgainst\": false,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"entityName\": \"InGen Corporation\",\n        \"entityType\": \"company\",\n        \"foundationDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          },\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          }\n        ],\n        \"identifiers\": [\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          },\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          }\n        ],\n        \"indicatorSummaries\": [\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          },\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          }\n        ],\n        \"locations\": [\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          },\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          }\n        ],\n        \"matchDOB\": \"1948-01-15T00:00:00Z\",\n        \"matchLocation\": \"us\",\n        \"matchName\": \"string\",\n        \"matchStrength\": 0.8,\n        \"riskMetadata\": {\n          \"newsMetadata\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pepLevels\": [\n            \"PEP Level 1\",\n            \"PEP Level 1\"\n          ],\n          \"sanctionLists\": [\n            \"sanctions_ofac\",\n            \"sanctions_ofac\"\n          ]\n        },\n        \"riskScore\": 573.9908170471963,\n        \"sigmaID\": \"3BX869NCJTZ5K\"\n      },\n      {\n        \"aliases\": [\n          \"InGen Corp.\",\n          \"InGen Corp.\"\n        ],\n        \"birthDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": false,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"entityName\": \"InGen Corporation\",\n        \"entityType\": \"company\",\n        \"foundationDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          },\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          }\n        ],\n        \"identifiers\": [\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          },\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          }\n        ],\n        \"indicatorSummaries\": [\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          },\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          }\n        ],\n        \"locations\": [\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          },\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          }\n        ],\n        \"matchDOB\": \"1948-01-15T00:00:00Z\",\n        \"matchLocation\": \"us\",\n        \"matchName\": \"string\",\n        \"matchStrength\": 0.8,\n        \"riskMetadata\": {\n          \"newsMetadata\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pepLevels\": [\n            \"PEP Level 1\",\n            \"PEP Level 1\"\n          ],\n          \"sanctionLists\": [\n            \"sanctions_ofac\",\n            \"sanctions_ofac\"\n          ]\n        },\n        \"riskScore\": 6001.458772401948,\n        \"sigmaID\": \"3BX869NCJTZ5K\"\n      }\n    ],\n    \"negativelyDecisionedMatches\": [\n      {\n        \"aliases\": [\n          \"InGen Corp.\",\n          \"InGen Corp.\"\n        ],\n        \"birthDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": true,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"entityName\": \"InGen Corporation\",\n        \"entityType\": \"company\",\n        \"foundationDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          },\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          }\n        ],\n        \"identifiers\": [\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          },\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          }\n        ],\n        \"indicatorSummaries\": [\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          },\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          }\n        ],\n        \"locations\": [\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          },\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          }\n        ],\n        \"matchDOB\": \"1948-01-15T00:00:00Z\",\n        \"matchLocation\": \"us\",\n        \"matchName\": \"string\",\n        \"matchStrength\": 0.8,\n        \"riskMetadata\": {\n          \"newsMetadata\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pepLevels\": [\n            \"PEP Level 1\",\n            \"PEP Level 1\"\n          ],\n          \"sanctionLists\": [\n            \"sanctions_ofac\",\n            \"sanctions_ofac\"\n          ]\n        },\n        \"riskScore\": 2814.8366872657393,\n        \"sigmaID\": \"3BX869NCJTZ5K\"\n      },\n      {\n        \"aliases\": [\n          \"InGen Corp.\",\n          \"InGen Corp.\"\n        ],\n        \"birthDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": true,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": false\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": true,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"entityName\": \"InGen Corporation\",\n        \"entityType\": \"company\",\n        \"foundationDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          },\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          }\n        ],\n        \"identifiers\": [\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          },\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          }\n        ],\n        \"indicatorSummaries\": [\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          },\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          }\n        ],\n        \"locations\": [\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          },\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          }\n        ],\n        \"matchDOB\": \"1948-01-15T00:00:00Z\",\n        \"matchLocation\": \"us\",\n        \"matchName\": \"string\",\n        \"matchStrength\": 0.8,\n        \"riskMetadata\": {\n          \"newsMetadata\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pepLevels\": [\n            \"PEP Level 1\",\n            \"PEP Level 1\"\n          ],\n          \"sanctionLists\": [\n            \"sanctions_ofac\",\n            \"sanctions_ofac\"\n          ]\n        },\n        \"riskScore\": 1854.5152521980813,\n        \"sigmaID\": \"3BX869NCJTZ5K\"\n      }\n    ],\n    \"trueMatches\": [\n      {\n        \"aliases\": [\n          \"InGen Corp.\",\n          \"InGen Corp.\"\n        ],\n        \"birthDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"decisioning\": {\n          \"decidedByDefault\": true,\n          \"decisionedAgainst\": true,\n          \"hasDecision\": true,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": false\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": true,\n            \"decisionedAgainst\": false,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"entityName\": \"InGen Corporation\",\n        \"entityType\": \"company\",\n        \"foundationDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          },\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          }\n        ],\n        \"identifiers\": [\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          },\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          }\n        ],\n        \"indicatorSummaries\": [\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          },\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          }\n        ],\n        \"locations\": [\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          },\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          }\n        ],\n        \"matchDOB\": \"1948-01-15T00:00:00Z\",\n        \"matchLocation\": \"us\",\n        \"matchName\": \"string\",\n        \"matchStrength\": 0.8,\n        \"riskMetadata\": {\n          \"newsMetadata\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pepLevels\": [\n            \"PEP Level 1\",\n            \"PEP Level 1\"\n          ],\n          \"sanctionLists\": [\n            \"sanctions_ofac\",\n            \"sanctions_ofac\"\n          ]\n        },\n        \"riskScore\": 4260.251218255665,\n        \"sigmaID\": \"3BX869NCJTZ5K\"\n      },\n      {\n        \"aliases\": [\n          \"InGen Corp.\",\n          \"InGen Corp.\"\n        ],\n        \"birthDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"decisioning\": {\n          \"decidedByDefault\": false,\n          \"decisionedAgainst\": true,\n          \"hasDecision\": false,\n          \"notes\": \"string\",\n          \"rationale\": [\n            \"string\",\n            \"string\"\n          ],\n          \"reviewSubmittedAt\": \"string\",\n          \"reviewedByUserName\": \"string\",\n          \"reviewedByUserURN\": \"string\",\n          \"wasDecisionMadeAgainstThisVersion\": true\n        },\n        \"decisioningTimeline\": [\n          {\n            \"decidedByDefault\": false,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          },\n          {\n            \"decidedByDefault\": true,\n            \"decisionedAgainst\": true,\n            \"notes\": \"string\",\n            \"rationale\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"reviewSubmittedAt\": \"string\",\n            \"reviewedByUserName\": \"string\",\n            \"reviewedByUserURN\": \"string\"\n          }\n        ],\n        \"entityName\": \"InGen Corporation\",\n        \"entityType\": \"company\",\n        \"foundationDates\": [\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          },\n          {\n            \"humanReadable\": \"Circa 1980\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"until\": \"2023-01-01T00:00:00Z\",\n            \"value\": \"2023-01-01T00:00:00Z\"\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          },\n          {\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"<text>\"\n          }\n        ],\n        \"identifiers\": [\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          },\n          {\n            \"country\": \"string\",\n            \"extras\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"value\": \"string\"\n          }\n        ],\n        \"indicatorSummaries\": [\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          },\n          {\n            \"category\": \"Sanctions\",\n            \"count\": 2,\n            \"isNetwork\": false,\n            \"maxScore\": 100\n          }\n        ],\n        \"locations\": [\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          },\n          {\n            \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n            \"country\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"fromDate\": \"1684-05-20\",\n            \"locality\": \"London\",\n            \"majorAdministrativeDivision\": \"England\",\n            \"minorAdministrativeDivision\": \"City of Westminster\",\n            \"postalCode\": \"SW1A 2AB\",\n            \"sourceAttribution\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"streetName\": \"Downing St\",\n            \"streetNumber\": \"10\",\n            \"toDate\": \"2020-05-20\",\n            \"type\": \"Residence\"\n          }\n        ],\n        \"matchDOB\": \"1948-01-15T00:00:00Z\",\n        \"matchLocation\": \"us\",\n        \"matchName\": \"string\",\n        \"matchStrength\": 0.8,\n        \"riskMetadata\": {\n          \"newsMetadata\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pepLevels\": [\n            \"PEP Level 1\",\n            \"PEP Level 1\"\n          ],\n          \"sanctionLists\": [\n            \"sanctions_ofac\",\n            \"sanctions_ofac\"\n          ]\n        },\n        \"riskScore\": 5218.088453926908,\n        \"sigmaID\": \"3BX869NCJTZ5K\"\n      }\n    ]\n  },\n  \"monitored\": true,\n  \"notes\": [\n    {\n      \"entityUrn\": \"string\",\n      \"id\": 8802,\n      \"note\": \"string\",\n      \"updatedAt\": \"1963-03-29T21:43:51.574Z\",\n      \"userName\": \"string\",\n      \"userUrn\": \"string\"\n    },\n    {\n      \"entityUrn\": \"string\",\n      \"id\": 3885,\n      \"note\": \"string\",\n      \"updatedAt\": \"1948-09-21T03:11:43.937Z\",\n      \"userName\": \"string\",\n      \"userUrn\": \"string\"\n    }\n  ],\n  \"organizationURN\": \"urn:sigma:organization:ingen-corp\",\n  \"profile\": {\n    \"facet\": {\n      \"aircraft\": {\n        \"manufactureDates\": [\n          {\n            \"humanReadable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"humanReadable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"models\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"operators\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"otherIdentifiers\": [\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extras\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extras\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"serialNumbers\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"tailNumbers\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"company\": {\n        \"corporateNumbers\": [\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"register\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"register\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"economicActivities\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"foundedDates\": [\n          {\n            \"humanReadable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"humanReadable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"incorporationTypes\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"linesOfBusiness\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"statuses\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"person\": {\n        \"dobs\": [\n          {\n            \"humanReadable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"humanReadable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"until\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"genders\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"identifications\": [\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extras\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extras\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"nationalities\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"politicalPositions\": [\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"to\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"vessel\": {\n        \"imo\": {\n          \"sourceAttribution\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"value\": \"<text>\"\n        },\n        \"maritimeCallSigns\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"portsOfRegistry\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"types\": [\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sourceAttribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"kyc\": {\n      \"aliases\": [\n        {\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        },\n        {\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        }\n      ],\n      \"facts\": [\n        {\n          \"label\": \"Notes\",\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        },\n        {\n          \"label\": \"Notes\",\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        }\n      ],\n      \"locations\": [\n        {\n          \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n          \"country\": \"United Kingdom\",\n          \"countryCode\": \"GB\",\n          \"fromDate\": \"1684-05-20\",\n          \"locality\": \"London\",\n          \"majorAdministrativeDivision\": \"England\",\n          \"minorAdministrativeDivision\": \"City of Westminster\",\n          \"postalCode\": \"SW1A 2AB\",\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"streetName\": \"Downing St\",\n          \"streetNumber\": \"10\",\n          \"toDate\": \"2020-05-20\",\n          \"type\": \"Residence\"\n        },\n        {\n          \"address\": \"10 Downing St, London SW1A 2AB, United Kingdom\",\n          \"country\": \"United Kingdom\",\n          \"countryCode\": \"GB\",\n          \"fromDate\": \"1684-05-20\",\n          \"locality\": \"London\",\n          \"majorAdministrativeDivision\": \"England\",\n          \"minorAdministrativeDivision\": \"City of Westminster\",\n          \"postalCode\": \"SW1A 2AB\",\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"streetName\": \"Downing St\",\n          \"streetNumber\": \"10\",\n          \"toDate\": \"2020-05-20\",\n          \"type\": \"Residence\"\n        }\n      ],\n      \"telephones\": [\n        {\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        },\n        {\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        }\n      ],\n      \"websites\": [\n        {\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        },\n        {\n          \"sourceAttribution\": [\n            \"abcd1234//1234567890\",\n            \"abcd1234//1234567890\"\n          ],\n          \"value\": \"<text>\"\n        }\n      ]\n    }\n  },\n  \"reviewState\": {\n    \"isAllowedToEndReview\": false,\n    \"isEditingLocked\": false,\n    \"lastReviewDate\": \"2020-01-01T00:00:00Z\",\n    \"reviewLockedByName\": \"John Hammond\",\n    \"reviewLockedByURN\": \"urn:sigma:user:f6ba1259b3a35de80aab7733c5d5\",\n    \"reviewLockedSince\": \"2020-01-01T00:00:00Z\",\n    \"reviewStatus\": \"needs_review\",\n    \"unreviewedItems\": {\n      \"numIndicators\": 5,\n      \"numMatches\": 2,\n      \"numNews\": 16,\n      \"total\": 3\n    }\n  },\n  \"riskMetadata\": {\n    \"newsMetadata\": [\n      {\n        \"count\": 3,\n        \"eventNewsType\": \"Legal Risk\",\n        \"samplePublishers\": [\n          \"The New York Times\",\n          \"The New York Times\"\n        ],\n        \"unformattedEventNewsType\": \"legal_risk\"\n      },\n      {\n        \"count\": 3,\n        \"eventNewsType\": \"Legal Risk\",\n        \"samplePublishers\": [\n          \"The New York Times\",\n          \"The New York Times\"\n        ],\n        \"unformattedEventNewsType\": \"legal_risk\"\n      }\n    ],\n    \"pepLevels\": [\n      \"PEP Level 1\",\n      \"PEP Level 1\"\n    ],\n    \"sanctionLists\": [\n      \"sanctions_ofac\",\n      \"sanctions_ofac\"\n    ]\n  },\n  \"riskScore\": 50,\n  \"searchParameters\": {\n    \"aliases\": [\n      \"Ingen Corp.\",\n      \"Ingen Corp.\"\n    ],\n    \"countries\": [\n      \"CR\",\n      \"CR\"\n    ],\n    \"dob\": \"string\",\n    \"entityType\": \"company\"\n  },\n  \"updatedAt\": \"1985-02-26T13:19:23.281Z\",\n  \"urn\": \"urn:sigma:entity:123e4567-e89b-12d3-a456-426614174000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db6f5952-edb2-4df1-8760-06ae00023117",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"search\": {\n    \"entityName\": \"InGen Corporation\",\n    \"aliases\": [\n      \"InGen, InGen Corp\",\n      \"InGen, InGen Corp\"\n    ],\n    \"countries\": [\n      \"US\",\n      \"US\"\n    ],\n    \"customFields\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"customerKey\": \"ABC1234567890\",\n    \"dob\": \"1993-06-11\",\n    \"entityType\": \"company\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f43a53c6-9403-4e00-8c2e-bd548aea28e7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"search\": {\n    \"entityName\": \"InGen Corporation\",\n    \"aliases\": [\n      \"InGen, InGen Corp\",\n      \"InGen, InGen Corp\"\n    ],\n    \"countries\": [\n      \"US\",\n      \"US\"\n    ],\n    \"customFields\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"customerKey\": \"ABC1234567890\",\n    \"dob\": \"1993-06-11\",\n    \"entityType\": \"company\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f07608b0-4a2f-494d-afaa-63dec1590172",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"search\": {\n    \"entityName\": \"InGen Corporation\",\n    \"aliases\": [\n      \"InGen, InGen Corp\",\n      \"InGen, InGen Corp\"\n    ],\n    \"countries\": [\n      \"US\",\n      \"US\"\n    ],\n    \"customFields\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"customerKey\": \"ABC1234567890\",\n    \"dob\": \"1993-06-11\",\n    \"entityType\": \"company\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "152a5b0d-297e-4609-970c-0e8b846e715e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"search\": {\n    \"entityName\": \"InGen Corporation\",\n    \"aliases\": [\n      \"InGen, InGen Corp\",\n      \"InGen, InGen Corp\"\n    ],\n    \"countries\": [\n      \"US\",\n      \"US\"\n    ],\n    \"customFields\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"customerKey\": \"ABC1234567890\",\n    \"dob\": \"1993-06-11\",\n    \"entityType\": \"company\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2d0d442-fbb0-4d77-bc0c-9d9f66b3f3d0",
+          "name": "Migrate Pre-reviewed Entities into Sigma360 (Skip Risk and Alerts)",
+          "request": {
+            "name": "Migrate Pre-reviewed Entities into Sigma360 (Skip Risk and Alerts)",
+            "description": {
+              "content": "For system migrations only. This endpoint will asynchronously add one or more entities to your monitored entity population, skipping alerts, ignoring existing risk, and force-setting the status as cleared.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                "create",
+                "assume-clean"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"<string>\",\n      \"aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"customerKey\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"entityType\": \"<string>\"\n    },\n    {\n      \"entityName\": \"<string>\",\n      \"aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"customerKey\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"entityType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e25bfd30-a9c7-4777-b0c3-55d18e975aec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "assume-clean"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskID\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d47f27b3-b267-46bf-b728-d83f4a986b41",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "assume-clean"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ae29f4b-c9dc-4130-a827-bb91aaafa181",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "assume-clean"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "704a0e6d-96b0-455d-a32e-45f5cbd59d92",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "assume-clean"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f49dfc2-3fd6-4368-80fb-49463b179407",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "assume-clean"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "384fff48-3967-40a8-9770-4a7acef2a596",
+          "name": "Enqueue a bulk entity creation task",
+          "request": {
+            "name": "Enqueue a bulk entity creation task",
+            "description": {
+              "content": "This endpoint will asynchronously add one or more entities to your monitored entity population. It is recommended that you use this endpoint when adding more than one entity. You will receive a webhook event when the entity creation job completes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                "create",
+                "enqueue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"<string>\",\n      \"aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"customerKey\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"entityType\": \"<string>\"\n    },\n    {\n      \"entityName\": \"<string>\",\n      \"aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"customerKey\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"entityType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2a35de2-c76f-492c-b106-de25212b8593",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "enqueue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskID\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd1d4e18-2c7f-4104-a6a8-4974bd435427",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "enqueue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2a7240c-b56c-4370-8f2d-a83d6a105da6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "enqueue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2782229b-1757-4118-9a0c-be7fd47ec220",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "enqueue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4bd40d1-4ae7-47fa-a2a2-b210e18f51ed",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "enqueue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filterSetID\": \"<integer>\",\n  \"entityGroupIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searches\": [\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    },\n    {\n      \"entityName\": \"InGen Corporation\",\n      \"aliases\": [\n        \"InGen, InGen Corp\",\n        \"InGen, InGen Corp\"\n      ],\n      \"countries\": [\n        \"US\",\n        \"US\"\n      ],\n      \"customFields\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"customerKey\": \"ABC1234567890\",\n      \"dob\": \"1993-06-11\",\n      \"entityType\": \"company\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "492736dc-8103-425d-8e0b-b50ce35dcc3e",
+          "name": "Check on the progress or errors of a bulk entity creation task",
+          "request": {
+            "name": "Check on the progress or errors of a bulk entity creation task",
+            "description": {
+              "content": "This endpoint reports the progress of bulk entity creation tasks. If registered, you will receive a webhook event when the entity creation job completes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                "create",
+                "status",
+                ":taskID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number, 1-indexed. Default: 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page. Maximum: 100, Default: 10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskID",
+                  "description": "(Required) The task ID returned from the upload request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2bebf37b-4229-4de9-8003-2d415195456a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "status",
+                    ":taskID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskID",
+                      "description": "(Required) The task ID returned from the upload request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"1976-08-02T20:52:31.778Z\",\n  \"entityGroupNames\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": \"string\",\n  \"taskStatus\": \"Working\",\n  \"totalEntities\": 1675\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24b50e15-0a22-465f-8e61-b55bd3829cb0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "status",
+                    ":taskID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskID",
+                      "description": "(Required) The task ID returned from the upload request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a51c1f07-b259-4163-8ae4-72db1db050fb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "status",
+                    ":taskID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskID",
+                      "description": "(Required) The task ID returned from the upload request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0a5849d-1930-4833-9293-a5322aa820e5",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "status",
+                    ":taskID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskID",
+                      "description": "(Required) The task ID returned from the upload request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5a3fd24-79ed-4373-98d6-a128c265e3b3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    "create",
+                    "status",
+                    ":taskID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskID",
+                      "description": "(Required) The task ID returned from the upload request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0f08d58-b8e2-450f-8cd9-bf234a4d8313",
+          "name": "Create a single entity group",
+          "request": {
+            "name": "Create a single entity group",
+            "description": {
+              "content": "Create a single entity group under your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityGroupName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad8244e7-915d-407b-8931-c5b050f74a66",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityGroupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associatedEntitiesCount\": 100,\n  \"associatedTeamsCount\": 2,\n  \"createdAt\": \"1975-07-17T04:55:54.580Z\",\n  \"entityGroupName\": \"string\",\n  \"id\": 6716,\n  \"updatedAt\": \"2016-08-18T17:54:14.118Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af0b17b2-e993-404d-a073-9d9a93e0af68",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityGroupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "939c0f25-a380-406d-bba7-46d725f723f4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityGroupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e78bd5df-5255-4809-90ae-64a3c392265b",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityGroupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b973c17-689a-45da-9812-ddf8c07e8235",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityGroupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e91b1010-264d-41c7-b01b-fd19190e6799",
+          "name": "Retrieve all entity groups",
+          "request": {
+            "name": "Retrieve all entity groups",
+            "description": {
+              "content": "Returns all entity groups created under your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f65e53c9-dbc5-4cec-9ac0-1d38496e3af0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entityGroups\": [\n    {\n      \"associatedEntitiesCount\": 100,\n      \"associatedTeamsCount\": 2,\n      \"createdAt\": \"1995-04-16T16:31:10.658Z\",\n      \"entityGroupName\": \"string\",\n      \"id\": 1067,\n      \"updatedAt\": \"1960-04-05T13:51:23.768Z\"\n    },\n    {\n      \"associatedEntitiesCount\": 100,\n      \"associatedTeamsCount\": 2,\n      \"createdAt\": \"2005-12-31T09:36:29.765Z\",\n      \"entityGroupName\": \"string\",\n      \"id\": 6857,\n      \"updatedAt\": \"1947-01-01T16:52:18.303Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29a84040-22df-47c0-a2d3-96ccb124118f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bbf422bd-fd84-458a-b812-6d075b28ce2b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68c60e59-a0cb-4ea5-9554-99d42025f32f",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3130343-a6c1-439f-a46c-bc19e134ea5e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sigma360.com/external/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cb535174-e0a9-4954-a500-72afe215c8f7",
+    "name": "Sigma360 Account Monitoring: Entity Creation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "### API Concepts\nThis API is designed to help you interact and integrate with Sigma360. You can use it to create new entities, receive notifications about changes to your entities, and retrieve information about your entities. All aspects of a Sigma360 entity can be retrieved through this API.\n\n#### Screening\nScreening identifies: risks, KYC details, news and other critical information based on the provided entity name. The results returned are determined by the pre-defined Filter Set (See below for more details).  \n\n##### Monitoring\nMonitoring will perform a continuous, ongoing screening function, where you can expect to receive alerts and updates about changes to your entities without needing to manually trigger a screening event.\nAn entity is under continuous monitoring if it appears in the 'Monitoring' tab and is not archived. Archiving an entity will suppress all alerts and updates for that entity.\n\n##### Alerts\nAlerts are discreet work items that bring a detected risk to an analyst's attention. You can find alerts in the UI's 'Alerts' tab. \nEvery monitored entity will create alerts as risks are detected. When you are performing a one-off screen, you can specify whether or not you want durable, UI-visible alerts to be created. Alerts created in this way will be visible together with alerts created through monitoring. \n\n\n#### Webhooks\nSeveral events will fire an out-of-band request back to your systems to inform you of data changes or allow you to take action.\n1. Entity Updated - changes to Matches, Indicators, KYC data or News\n2. Entity Creation Finished - a bulk entity creation job has completed\n\nNote that all Webhooks fire against a url provided by you during onboarding. If you need to change this url, please contact Sigma Customer Success.\n\n#### Filter Sets\nMonitoring and screening both use Filter Sets to configure returns and manage true and false positives according to organizational risk appetite.\nFor detailed information on ‘Filter Sets’ - contact Support: [support\\@sigmaratings.com](mailto:support\\@sigmaratings.com).\nScreening response data is organized by: Indicators, News and KYC details. \nFor more information on Indicators, News and KYC data see:[Sigma360 Indicators & Global Data](https://6879283.fs1.hubspotusercontent-na1.net/hubfs/6879283/02%20Product%20Documents/Sigma360%20Indicators%20&%20Global%20Data.pdf). \n\n\n#### Conventions and Definitions\nAll entities are identified by a unique Sigma360 Entity ID (URN). These are stable over the entire lifetime of the entity.\n\nAll dates are expected in RFC3339 format or part thereof, e.g. \"2006-01-02T15:04:05Z07:00\".\n\nAll countries are expected to be in [ISO 3166-1 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements), e.g. \"US\", or \"GB\".\nIn general, when a filter is not specified, the default is to return all entities for that field.\n\n##### Rate Limiting\nBy default, we impose a maximum of 100 requests per second per account. If you exceed this limit, you will receive a 429 response codes for the extra requests.\nWe encourage you to aggressively retry requests that were rate-limited, as these do not count against the limit. The limits \ndo not carry over and do not have any memory of previous rate limit events. If you are consistently hitting rate limits, please contact Sigma Customer Success.\n\n##### UI Only tasks\nCertain administrative tasks are limited to the UI and are not available via API. These are:\n1. Creation and maintenance of Filter Sets\n2. Changing the group of one or more entities\n3. Changing the Filter Set for one ore more entities\n4. Review workflow\n\n\nContact Support:\n Name: Sigma Customer Success Team\n Email: support@sigma360.com",
+      "type": "text/plain"
+    }
+  }
+}

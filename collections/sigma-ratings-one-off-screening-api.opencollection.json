@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sigma360 Account One-Off Screening API",
+    "version": "v2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "One-Off Screening",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Real-time Single Screening",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/screening/full-single",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint is used to perform a screen of a single entity. It is done synchronously and returns a summary of the results. You must specify a filter set, which will be used for this search. The fields, coverage, and match threshold are determined by the filterset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

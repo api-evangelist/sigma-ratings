@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sigma360 Account Utilities API",
+    "version": "v2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform a test delivery of your webhook connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/utils/send-webhook-test\"",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint causes a webhook message to be delivered to your configured webhook target. It will be delivered from the same network and with the same options as real webhooks. This operation is asynchronous; it will return a 200 when it queues the test event, even if the webhook then fails or if no webhook is configured on your account. Tests will not be retried."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

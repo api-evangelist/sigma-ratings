@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sigma360 Account Monitoring: Entity Creation API",
+    "version": "v2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring: Entity Creation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create one Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entities/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will synchronously add one entity to your monitored entity population. This returns the full state of the entity, for convenience. If you are adding more than one entity, it is recommend that you use the bulk endpoint for performance."
+        },
+        {
+          "info": {
+            "name": "Migrate Pre-reviewed Entities into Sigma360 (Skip Risk and Alerts)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entities/create/assume-clean",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For system migrations only. This endpoint will asynchronously add one or more entities to your monitored entity population, skipping alerts, ignoring existing risk, and force-setting the status as cleared."
+        },
+        {
+          "info": {
+            "name": "Enqueue a bulk entity creation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entities/create/enqueue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will asynchronously add one or more entities to your monitored entity population. It is recommended that you use this endpoint when adding more than one entity. You will receive a webhook event when the entity creation job completes."
+        },
+        {
+          "info": {
+            "name": "Check on the progress or errors of a bulk entity creation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/entities/create/status/:taskID",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              },
+              {
+                "name": "taskID",
+                "value": "",
+                "type": "path",
+                "description": "The task ID returned from the upload request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint reports the progress of bulk entity creation tasks. If registered, you will receive a webhook event when the entity creation job completes."
+        },
+        {
+          "info": {
+            "name": "Create a single entity group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a single entity group under your account."
+        },
+        {
+          "info": {
+            "name": "Retrieve all entity groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/groups",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all entity groups created under your account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

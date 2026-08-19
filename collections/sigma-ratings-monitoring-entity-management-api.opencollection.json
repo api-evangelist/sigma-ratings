@@ -1,0 +1,321 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sigma360 Account Monitoring: Entity Management API",
+    "version": "v2.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring: Entity Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a listing of Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/alerts",
+            "params": [
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "The field name that you want to sort by. Many fields in the response are sortable, but not all."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "ASC or DESC. Defaults: DESC"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint retrieves the alerts listing. By default, it will return open alerts. An alert is a list of new risks seen since the last alert was closed. You can paginate with a cursor using the 'id' column."
+        },
+        {
+          "info": {
+            "name": "Retrieve a paginated list of entity summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entities",
+            "params": [
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "The field name that you want to sort by. Many fields in the response are sortable, but not all."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "ASC or DESC. Defaults: DESC"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to browse your monitored entity population. It is filterable and shows all of your entities at a glance."
+        },
+        {
+          "info": {
+            "name": "Archive one or more entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sigma360.com/external/v2/entities/archive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will archive one or more entities. Archived entities will no longer be monitored and will not appear in your Monitoring population."
+        },
+        {
+          "info": {
+            "name": "Retrieve the entities created by a bulk entity creation task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/entities/by-task-id/current-state/:taskID",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              },
+              {
+                "name": "taskID",
+                "value": "",
+                "type": "path",
+                "description": "The task ID returned from the upload request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint retrieves a paginated list of entities created by a bulk entity creation task. If the enqueued task is not yet finished, this endpoint will return an HTTP 425 Too Early response. The response format is not in the typical summary format, but instead, it is the full format typically available from the \"Retrieve an Entity's current state\" endpoint."
+        },
+        {
+          "info": {
+            "name": "Retrieve an entity's current state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/entity/:entityURN",
+            "params": [
+              {
+                "name": "entityURN",
+                "value": "",
+                "type": "path",
+                "description": "The entity ID or URN."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint includes a single entity's latest indicators, matches, and profile information."
+        },
+        {
+          "info": {
+            "name": "Retrieve Sigma News Events for a given entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entity/:entityURN/news",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, 1-indexed. Default: 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum: 100, Default: 10"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "The field name that you want to sort by. Many fields in the response are sortable, but not all."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "ASC or DESC. Defaults: DESC"
+              },
+              {
+                "name": "entityURN",
+                "value": "",
+                "type": "path",
+                "description": "The entity ID or URN."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint will return a paginated list of machine-curated Sigma News events for a given entity."
+        },
+        {
+          "info": {
+            "name": "Retrieve a profile information, divided by match",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sigma360.com/external/v2/entity/:entityURN/profile-by-matches",
+            "params": [
+              {
+                "name": "entityURN",
+                "value": "",
+                "type": "path",
+                "description": "The entity ID or URN."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint returns profile information (KYC and Facets), but match-by-match. This allows you to correlate profile information to matches."
+        },
+        {
+          "info": {
+            "name": "Retrieve the full body of a referenced news article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sigma360.com/external/v2/news/event/:uuid/article/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "The individual article. Each article is uniquely identified by its hash."
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The event UUID that includes the article. In the entity news endpoint, this is called the event's ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint retrieves the full body of a news article referenced in a Sigma News Event. For licensing and performance reasons, this must be called only as a response to user action, and not in bulk. The response includes highlights of relevant phrases, entities, and locations in the article."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

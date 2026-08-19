@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "7b9868af-52c4-4ea6-91bc-a99c020012db",
+      "name": "Account",
+      "description": {
+        "content": "Account management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72f8f77f-ef37-48ab-a7f0-16fc5cf2b7ff",
+          "name": "Retrieve account status",
+          "request": {
+            "name": "Retrieve account status",
+            "description": {
+              "content": "This endpoint is used to check the organization-wide metadata for your Sigma360 account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b9848f6b-48ef-4ff4-9e2d-041b6678d8ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiKey\": \"bea8252ff4e80f41719ea13cdf007273\",\n  \"createdAt\": \"2004-04-21T08:32:10.756Z\",\n  \"expiresAt\": \"2001-06-24T19:40:07.800Z\",\n  \"organizationName\": \"ACME Inc.\",\n  \"remainingCalls\": 6030,\n  \"testKey\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fac55fa-14ab-451b-992e-66302f5c87c6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a0272e5-4760-4b0f-8560-879161dd9ff8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2686d9a-299c-4c44-af14-a0c14e6929db",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "374ff8cf-852e-445d-b84c-26085e6bef0d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sigma360.com/external/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4fde52d0-8910-418f-bcdc-d8ef6bce9839",
+    "name": "Sigma360 Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "### API Concepts\nThis API is designed to help you interact and integrate with Sigma360. You can use it to create new entities, receive notifications about changes to your entities, and retrieve information about your entities. All aspects of a Sigma360 entity can be retrieved through this API.\n\n#### Screening\nScreening identifies: risks, KYC details, news and other critical information based on the provided entity name. The results returned are determined by the pre-defined Filter Set (See below for more details).  \n\n##### Monitoring\nMonitoring will perform a continuous, ongoing screening function, where you can expect to receive alerts and updates about changes to your entities without needing to manually trigger a screening event.\nAn entity is under continuous monitoring if it appears in the 'Monitoring' tab and is not archived. Archiving an entity will suppress all alerts and updates for that entity.\n\n##### Alerts\nAlerts are discreet work items that bring a detected risk to an analyst's attention. You can find alerts in the UI's 'Alerts' tab. \nEvery monitored entity will create alerts as risks are detected. When you are performing a one-off screen, you can specify whether or not you want durable, UI-visible alerts to be created. Alerts created in this way will be visible together with alerts created through monitoring. \n\n\n#### Webhooks\nSeveral events will fire an out-of-band request back to your systems to inform you of data changes or allow you to take action.\n1. Entity Updated - changes to Matches, Indicators, KYC data or News\n2. Entity Creation Finished - a bulk entity creation job has completed\n\nNote that all Webhooks fire against a url provided by you during onboarding. If you need to change this url, please contact Sigma Customer Success.\n\n#### Filter Sets\nMonitoring and screening both use Filter Sets to configure returns and manage true and false positives according to organizational risk appetite.\nFor detailed information on ‘Filter Sets’ - contact Support: [support\\@sigmaratings.com](mailto:support\\@sigmaratings.com).\nScreening response data is organized by: Indicators, News and KYC details. \nFor more information on Indicators, News and KYC data see:[Sigma360 Indicators & Global Data](https://6879283.fs1.hubspotusercontent-na1.net/hubfs/6879283/02%20Product%20Documents/Sigma360%20Indicators%20&%20Global%20Data.pdf). \n\n\n#### Conventions and Definitions\nAll entities are identified by a unique Sigma360 Entity ID (URN). These are stable over the entire lifetime of the entity.\n\nAll dates are expected in RFC3339 format or part thereof, e.g. \"2006-01-02T15:04:05Z07:00\".\n\nAll countries are expected to be in [ISO 3166-1 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements), e.g. \"US\", or \"GB\".\nIn general, when a filter is not specified, the default is to return all entities for that field.\n\n##### Rate Limiting\nBy default, we impose a maximum of 100 requests per second per account. If you exceed this limit, you will receive a 429 response codes for the extra requests.\nWe encourage you to aggressively retry requests that were rate-limited, as these do not count against the limit. The limits \ndo not carry over and do not have any memory of previous rate limit events. If you are consistently hitting rate limits, please contact Sigma Customer Success.\n\n##### UI Only tasks\nCertain administrative tasks are limited to the UI and are not available via API. These are:\n1. Creation and maintenance of Filter Sets\n2. Changing the group of one or more entities\n3. Changing the Filter Set for one ore more entities\n4. Review workflow\n\n\nContact Support:\n Name: Sigma Customer Success Team\n Email: support@sigma360.com",
+      "type": "text/plain"
+    }
+  }
+}
