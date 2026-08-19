@@ -28,7 +28,7 @@ x-backed-by:
 x-tier: enriched
 x-tier-reason: api-harvested
 x-former-name: Sigma Ratings
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-21'
 tags:
