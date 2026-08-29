@@ -157,6 +157,16 @@ apis:
     url: https://docs.sigma360.com/api
   - type: Documentation
     url: https://docs.sigma360.com/
+- aid: sigma-ratings:sigma-ratings-webhooks-api
+  name: Sigma360 Webhooks API
+  description: Webhooks that notify you of important events
+  humanURL: https://docs.sigma360.com/api
+  baseURL: https://api.sigma360.com/external/v2
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/sigma-ratings-webhooks-api-openapi.yml
 common:
 - type: Website
   url: https://www.sigma360.com/

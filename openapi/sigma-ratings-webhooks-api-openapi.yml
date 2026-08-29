@@ -4,7 +4,7 @@ info:
     email: support@sigma360.com
     name: Sigma Customer Success Team
   description: "### API Concepts\nThis API is designed to help you interact and integrate with Sigma360. You can use it to create new entities, receive notifications about changes to your entities, and retrieve information about your entities. All aspects of a Sigma360 entity can be retrieved through this API.\n\n#### Screening\nScreening identifies: risks, KYC details, news and other critical information based on the provided entity name. The results returned are determined by the pre-defined Filter Set (See below for more details).  \n\n##### Monitoring\nMonitoring will perform a continuous, ongoing screening function, where you can expect to receive alerts and updates about changes to your entities without needing to manually trigger a screening event.\nAn entity is under continuous monitoring if it appears in the 'Monitoring' tab and is not archived. Archiving an entity will suppress all alerts and updates for that entity.\n\n##### Alerts\nAlerts are discreet work items that bring a detected risk to an analyst's attention. You can find alerts in the UI's 'Alerts' tab. \nEvery monitored entity will create alerts as risks are detected. When you are performing a one-off screen, you can specify whether or not you want durable, UI-visible alerts to be created. Alerts created in this way will be visible together with alerts created through monitoring. \n\n\n#### Webhooks\nSeveral events will fire an out-of-band request back to your systems to inform you of data changes or allow you to take action.\n1. Entity Updated - changes to Matches, Indicators, KYC data or News\n2. Entity Creation Finished - a bulk entity creation job has completed\n\nNote that all Webhooks fire against a url provided by you during onboarding. If you need to change this url, please contact Sigma Customer Success.\n\n#### Filter Sets\nMonitoring and screening both use Filter Sets to configure returns and manage true and false positives according to organizational risk appetite.\nFor detailed information on ‘Filter Sets’ - contact Support: [support\\@sigmaratings.com](mailto:support\\@sigmaratings.com).\nScreening response data is organized by: Indicators, News and KYC details. \nFor more information on Indicators, News and KYC data see:[Sigma360 Indicators & Global Data](https://6879283.fs1.hubspotusercontent-na1.net/hubfs/6879283/02%20Product%20Documents/Sigma360%20Indicators%20&%20Global%20Data.pdf). \n\n\n#### Conventions and Definitions\nAll entities are identified by a unique Sigma360 Entity ID (URN). These are stable over the entire lifetime of the entity.\n\nAll dates are expected in RFC3339 format or part thereof, e.g. \"2006-01-02T15:04:05Z07:00\".\n\nAll countries are expected to be in [ISO 3166-1 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements), e.g. \"US\", or \"GB\".\nIn general, when a filter is not specified, the default is to return all entities for that field.\n\n##### Rate Limiting\nBy default, we impose a maximum of 100 requests per second per account. If you exceed this limit, you will receive a 429 response codes for the extra requests.\nWe encourage you to aggressively retry requests that were rate-limited, as these do not count against the limit. The limits \ndo not carry over and do not have any memory of previous rate limit events. If you are consistently hitting rate limits, please contact Sigma Customer Success.\n\n##### UI Only tasks\nCertain administrative tasks are limited to the UI and are not available via API. These are:\n1. Creation and maintenance of Filter Sets\n2. Changing the group of one or more entities\n3. Changing the Filter Set for one ore more entities\n4. Review workflow\n"
-  title: 'Sigma360 Monitoring: History API'
+  title: Sigma360 Webhooks API
   version: v2.0.1
   x-logo:
     altText: Sigma360
@@ -15,139 +15,66 @@ servers:
 security:
 - apiKey: []
 tags:
-- description: Retrieving monitoring history
-  name: 'Monitoring: History'
-paths:
-  /entities/histories:
+- description: Webhooks that notify you of important events
+  name: Webhooks
+paths: {}
+webhooks:
+  Entity Created:
     post:
-      description: This endpoint will return a paginated list of all entities' history events. A history event is created whenever an entity's data changes for any reason. Only includes monitored, unarchived entities.
-      parameters:
-      - description: 'Page number, 1-indexed. Default: 1'
-        in: query
-        name: page
-        schema:
-          description: 'Page number, 1-indexed. Default: 1'
-          example: 1
-          type: integer
-      - description: 'Number of results per page. Maximum: 100, Default: 10'
-        in: query
-        name: pageSize
-        schema:
-          description: 'Number of results per page. Maximum: 100, Default: 10'
-          example: 10
-          type: integer
-      - in: query
-        name: cursor
-        schema:
-          nullable: true
+      tags:
+      - Webhooks
+      summary: Fires when an Entity Creation Job completes
+      description: After using the enqueue bulk entity creation endpoint through the API, or after a user begins an Entity creation job in the Sigma360 interface, this webhook will be triggered when the job completes. Entity creation jobs are atomic. If any entities could not be created, none of the entities are created. The response contains a list of entities that failed during creation, if any were present. If success is false, no entities were created.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestEntitiesHistoriesRequestPublic'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponsePaginatedEntityHistory'
-          description: OK
-        '400':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Bad Request
-        '401':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Unauthorized
-        '429':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Too Many Requests
-        '500':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Internal Server Error
+              $ref: '#/components/schemas/ResponseTaskCompletionReportPing'
+      responses: {}
       security:
       - apiKey: []
-      summary: Retrieve history events for all entities in a paginated stream
-      tags:
-      - 'Monitoring: History'
-  /entity/{entityURN}/history:
+  Entity Disposition Changed:
     post:
-      description: This endpoint will return a paginated list of entity history events for a given entity. A history event is created whenever an entity's data changes for any reason.
-      parameters:
-      - description: 'Page number, 1-indexed. Default: 1'
-        in: query
-        name: page
-        schema:
-          description: 'Page number, 1-indexed. Default: 1'
-          example: 1
-          type: integer
-      - description: 'Number of results per page. Maximum: 100, Default: 10'
-        in: query
-        name: pageSize
-        schema:
-          description: 'Number of results per page. Maximum: 100, Default: 10'
-          example: 10
-          type: integer
-      - description: The entity ID or URN.
-        in: path
-        name: entityURN
-        required: true
-        schema:
-          description: The entity ID or URN.
-          example: urn:sigma:entity:1234-abcdef
-          type: string
+      tags:
+      - Webhooks
+      summary: Fires when a Monitored Entity's disposition is changed by a user
+      description: When a user changes the disposition of a monitored entity, this webhook will be triggered. Dispositions are the user's determinations to the final state of an entity, such as 'Cleared' or 'Blocked'.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestEntityHistoryRequestPublic'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponsePaginatedEntityHistory'
-          description: OK
-        '400':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Bad Request
-        '401':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Unauthorized
-        '429':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Too Many Requests
-        '500':
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Internal Server Error
+              $ref: '#/components/schemas/ResponseEntityDispositionChangePing'
+      responses: {}
       security:
       - apiKey: []
-      summary: Retrieve a paginated list of entity history events
+  History Updated:
+    post:
       tags:
-      - 'Monitoring: History'
+      - Webhooks
+      summary: Fires when a Monitored Entity updates
+      description: When a monitored entity has a data update for any reason, this webhook will be triggered. History updates may describe decisions, reviews, or updates from underlying data sources or statistical models.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseEntityHistoryPing'
+      responses: {}
+      security:
+      - apiKey: []
+  New Case Management Entry:
+    post:
+      tags:
+      - Webhooks
+      summary: Fires when a user sends an entity to an external case management system
+      description: In some configurations, users can send entities to an external case management system for review and action. When this occurs, this webhook will be triggered, allowing you to synchronize your case management system with Sigma360.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseCaseManagementIntentPing'
+      responses: {}
+      security:
+      - apiKey: []
 components:
   schemas:
     SigmaidCustomEntityField:
@@ -370,6 +297,14 @@ components:
       - sources
       - description
       type: object
+    ResponseEntityHistoryPing:
+      properties:
+        eventPayload:
+          $ref: '#/components/schemas/ResponseEntityHistory'
+        eventType:
+          default: entity_history
+          type: string
+      type: object
     ResponseChangedItem:
       properties:
         type:
@@ -391,44 +326,6 @@ components:
           type: boolean
         maxScore:
           example: 100
-          type: integer
-      type: object
-    RequestEntitiesHistoriesRequestPublic:
-      properties:
-        createdAt:
-          $ref: '#/components/schemas/RequestDateRangeRequest'
-        cursor: {}
-        groupIDs:
-          description: Optional. An array of group IDs to include entities from.
-          items:
-            minimum: 0
-            type: integer
-          nullable: true
-          type: array
-        historyTypes:
-          description: Optional. An array of history types to include. Empty means all.
-          enum:
-          - lifecycle
-          - review
-          - alert
-          - disposition
-          - monitoring
-          - configuration
-          items:
-            type: string
-          nullable: true
-          type: array
-        page:
-          description: 'Page number, 1-indexed. Default: 1'
-          example: 1
-          type: integer
-        pageSize:
-          description: 'Number of results per page. Maximum: 100, Default: 10'
-          example: 10
-          type: integer
-        total:
-          description: Total number of results. Ignored in requests, used in responses.
-          example: 15000
           type: integer
       type: object
     SigmaidBasicSearchParams:
@@ -478,6 +375,17 @@ components:
       required:
       - entityName
       type: object
+    ResponseTaskCompletionReport:
+      properties:
+        apiKey:
+          type: string
+        numEntities:
+          type: integer
+        success:
+          type: boolean
+        taskID:
+          type: string
+      type: object
     SigmaidExtractedRisk:
       properties:
         category:
@@ -487,21 +395,6 @@ components:
           items:
             $ref: '#/components/schemas/SigmaidHighLightSection'
           type: array
-      type: object
-    RequestEntityHistoryRequestPublic:
-      properties:
-        page:
-          description: 'Page number, 1-indexed. Default: 1'
-          example: 1
-          type: integer
-        pageSize:
-          description: 'Number of results per page. Maximum: 100, Default: 10'
-          example: 10
-          type: integer
-        total:
-          description: Total number of results. Ignored in requests, used in responses.
-          example: 15000
-          type: integer
       type: object
     ResponseDiffNumber:
       properties:
@@ -580,35 +473,6 @@ components:
           - title
           - body
           type: string
-      type: object
-    RequestDateRangeRequest:
-      properties:
-        since:
-          description: The start of the date range.
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          nullable: true
-          type: string
-        until:
-          description: The end of the date range.
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          nullable: true
-          type: string
-      type: object
-    ResponsePaginatedEntityHistory:
-      properties:
-        histories:
-          items:
-            $ref: '#/components/schemas/ResponseEntityHistory'
-          nullable: true
-          type: array
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        total:
-          type: integer
       type: object
     SigmaidRiskSummary:
       properties:
@@ -773,6 +637,35 @@ components:
           nullable: true
           type: array
       type: object
+    ResponseCaseManagementIntentPayload:
+      properties:
+        customFields:
+          description: User-provided metadata, any format. Does not affect matching, risk, or profile data.
+          items:
+            $ref: '#/components/schemas/SigmaidCustomEntityField'
+          nullable: true
+          type: array
+        customerKey:
+          description: A user-provided identifier. Any format.
+          example: ABC1234567890
+          type: string
+        entityLink:
+          description: The URL link for the specified entity
+          example: https://app.sigma360.com/entity/123e4567-e89b-12d3-a456-426614174000
+          type: string
+        entityURN:
+          description: The primary identifier for user-created entities
+          example: urn:sigma:entity:123e4567-e89b-12d3-a456-426614174000
+          type: string
+        indicatorSummaries:
+          description: The list of indicator summaries of the entity
+          items:
+            $ref: '#/components/schemas/SigmaidIndicatorSummary'
+          nullable: true
+          type: array
+        searchParameters:
+          $ref: '#/components/schemas/SigmaidBasicSearchParams'
+      type: object
     ResponseDecisionState:
       properties:
         decidedByDefault:
@@ -820,6 +713,22 @@ components:
           items:
             $ref: '#/components/schemas/SigmaidHighLightSection'
           type: array
+      type: object
+    ResponseTaskCompletionReportPing:
+      properties:
+        eventPayload:
+          $ref: '#/components/schemas/ResponseTaskCompletionReport'
+        eventType:
+          default: task_completion
+          type: string
+      type: object
+    ResponseEntityDispositionChangePing:
+      properties:
+        eventPayload:
+          $ref: '#/components/schemas/ResponseEntityDispositionWebhookPayload'
+        eventType:
+          default: entityDispositionChangePing
+          type: string
       type: object
     ResponseNewsChange:
       properties:
@@ -939,6 +848,14 @@ components:
           nullable: true
           type: array
       type: object
+    ResponseCaseManagementIntentPing:
+      properties:
+        eventPayload:
+          $ref: '#/components/schemas/ResponseCaseManagementIntentPayload'
+        eventType:
+          default: sendToCaseManagementIntentPing
+          type: string
+      type: object
     SigmaidEventArticle:
       properties:
         articleHash:
@@ -1017,6 +934,31 @@ components:
         reviewedByUserName:
           type: string
         reviewedByUserURN:
+          type: string
+      type: object
+    ResponseEntityDispositionWebhookPayload:
+      properties:
+        customerKey:
+          description: A user-provided identifier. Any format.
+          example: ABC1234567890
+          type: string
+        entityURN:
+          description: The primary identifier for user-created entities
+          example: urn:sigma:entity:123e4567-e89b-12d3-a456-426614174000
+          type: string
+        newEntityDispositionState:
+          description: The new disposition state assigned to the entity
+          example: pending
+          type: string
+        timestamp:
+          description: The time when the disposition was changed
+          example: '2020-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        userName:
+          description: The name of the user who changed the disposition
+          example: John Hammond
           type: string
       type: object
   securitySchemes:
