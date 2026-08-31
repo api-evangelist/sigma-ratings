@@ -163,6 +163,8 @@ apis:
   humanURL: https://docs.sigma360.com/api
   baseURL: https://api.sigma360.com/external/v2
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
