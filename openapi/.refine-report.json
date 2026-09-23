@@ -18,7 +18,8 @@
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "sigma-ratings-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "sigma-ratings-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "sigma-ratings-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -27,6 +28,7 @@
     "sigma-ratings-monitoring-entity-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "sigma-ratings-monitoring-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "sigma-ratings-one-off-screening-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "sigma-ratings-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "sigma-ratings-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sigma-ratings-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
