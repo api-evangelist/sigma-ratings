@@ -68,6 +68,201 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SigmaidBasicEntityResult:
+      properties:
+        entityName:
+          example: InGen Corporation
+          type: string
+        entityType:
+          example: company
+          type: string
+        sigmaID:
+          example: 3BX869NCJTZ5K
+          type: string
+      type: object
+    SigmaidPoliticalPosition:
+      properties:
+        country:
+          type: string
+        description:
+          type: string
+        from:
+          nullable: true
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        to:
+          nullable: true
+          type: string
+      type: object
+    ResponseFullSearchResultWithAlertPubliclyDocumented:
+      properties:
+        alertCreatedURN:
+          description: Populated if the search resulted in an alert being created. Contains the URN of the alert. Only valid if using createAlerts=true in the request.
+          type: string
+        resultCount:
+          description: Number of individual matches found
+          example: 2
+          type: integer
+        resultRows:
+          items:
+            $ref: '#/components/schemas/SigmaidCompositeResult'
+          nullable: true
+          type: array
+        searchDate:
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          type: string
+      required:
+      - resultCount
+      - resultRows
+      - searchDate
+      type: object
+    SigmaidFacetAircraft:
+      properties:
+        manufactureDates:
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        models:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        operators:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        otherIdentifiers:
+          items:
+            $ref: '#/components/schemas/SigmaidIdentification'
+          nullable: true
+          type: array
+        serialNumbers:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        tailNumbers:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    SigmaidEntityResult:
+      properties:
+        KYC:
+          $ref: '#/components/schemas/SigmaidKYCEntityData'
+        entityName:
+          $ref: '#/components/schemas/SigmaidTextWithSource'
+        facet:
+          $ref: '#/components/schemas/SigmaidFullEntityFacet'
+        indicatorSummaries:
+          items:
+            $ref: '#/components/schemas/SigmaidIndicatorSummary'
+          type: array
+        indicators:
+          items:
+            $ref: '#/components/schemas/SigmaidIndicator'
+          nullable: true
+          type: array
+        news:
+          items:
+            $ref: '#/components/schemas/SigmaidNewsEvent'
+          nullable: true
+          type: array
+        riskSummary:
+          $ref: '#/components/schemas/SigmaidRiskSummary'
+        sigmaID:
+          type: string
+      required:
+      - sigmaID
+      - riskSummary
+      - indicatorSummaries
+      - entityName
+      - KYC
+      - news
+      - indicators
+      - facet
+      type: object
+    SigmaidFullEntityFacet:
+      properties:
+        aircraft:
+          $ref: '#/components/schemas/SigmaidFacetAircraft'
+        company:
+          $ref: '#/components/schemas/SigmaidFacetCompany'
+        person:
+          $ref: '#/components/schemas/SigmaidFacetPerson'
+        type:
+          type: integer
+        vessel:
+          $ref: '#/components/schemas/SigmaidFacetVessel'
+      type: object
+    SigmaidNode:
+      properties:
+        entity:
+          $ref: '#/components/schemas/SigmaidSummarySearchResultRow'
+        entityType:
+          description: The type of the entity (e.g. person, company, vessel, aircraft).
+          type: string
+        id:
+          description: The SigmaID of the entity represented by this node.
+          type: string
+        isDisabled:
+          description: Whether the node is disabled due to filters or other factors. However, it may still be included because it is required to show a further node.
+          type: boolean
+        name:
+          description: The SigmaID's canonical name.
+          type: string
+      type: object
+    SigmaidSourceURL:
+      properties:
+        name:
+          type: string
+        url:
+          nullable: true
+          type: string
+      type: object
+    SigmaidNewsEvent:
+      properties:
+        articles:
+          items:
+            $ref: '#/components/schemas/SigmaidEventArticle'
+          nullable: true
+          type: array
+        entityRisk:
+          type: string
+        eventConfidence:
+          type: number
+        eventLabel:
+          type: string
+        eventMaterialityScore:
+          type: number
+        eventSeverity:
+          type: string
+        humanVerified:
+          type: boolean
+        id:
+          type: string
+        isPreferredPublisher:
+          type: boolean
+        sigmaID:
+          type: string
+        topics:
+          items:
+            type: string
+          nullable: true
+          type: array
+        unformattedLabel:
+          type: string
+      type: object
     SigmaidExtractEntity:
       properties:
         entityRisk:
@@ -97,101 +292,36 @@ components:
           nullable: true
           type: array
       type: object
-    SigmaidFullEntityFacet:
+    SigmaidRiskSummary:
       properties:
-        aircraft:
-          $ref: '#/components/schemas/SigmaidFacetAircraft'
-        company:
-          $ref: '#/components/schemas/SigmaidFacetCompany'
-        person:
-          $ref: '#/components/schemas/SigmaidFacetPerson'
-        type:
-          type: integer
-        vessel:
-          $ref: '#/components/schemas/SigmaidFacetVessel'
+        score:
+          type: number
       type: object
-    SigmaidCustomEntityField:
+    SigmaidLocation:
       properties:
-        key:
+        address:
+          example: 10 Downing St, London SW1A 2AB, United Kingdom
           type: string
-        value:
-          type: string
-      type: object
-    SigmaidFacetCompany:
-      properties:
-        corporateNumbers:
-          items:
-            $ref: '#/components/schemas/SigmaidCorporateNumber'
-          nullable: true
-          type: array
-        economicActivities:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/SigmaidEconomicActivity'
-            type: array
-          nullable: true
-          type: object
-        foundedDates:
-          items:
-            $ref: '#/components/schemas/SigmaidDateWithSource'
-          nullable: true
-          type: array
-        incorporationTypes:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        linesOfBusiness:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        statuses:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-      type: object
-    SigmaidHighLightSection:
-      properties:
-        end:
-          description: The end of the detected entity name in the article. Relative to the beginning of the text.
-          type: integer
-        start:
-          description: The beginning offset of the detected entity name in the article. Relative to the beginning of the text.
-          type: integer
-        target:
-          description: Determines whether the offsets should be applied to the title or body.
-          enum:
-          - title
-          - body
-          type: string
-      type: object
-    SigmaidNode:
-      properties:
-        entity:
-          $ref: '#/components/schemas/SigmaidSummarySearchResultRow'
-        entityType:
-          description: The type of the entity (e.g. person, company, vessel, aircraft).
-          type: string
-        id:
-          description: The SigmaID of the entity represented by this node.
-          type: string
-        isDisabled:
-          description: Whether the node is disabled due to filters or other factors. However, it may still be included because it is required to show a further node.
-          type: boolean
-        name:
-          description: The SigmaID's canonical name.
-          type: string
-      type: object
-    SigmaidPoliticalPosition:
-      properties:
         country:
+          example: United Kingdom
           type: string
-        description:
+        countryCode:
+          example: GB
           type: string
-        from:
-          nullable: true
+        fromDate:
+          example: '1684-05-20'
+          type: string
+        locality:
+          example: London
+          type: string
+        majorAdministrativeDivision:
+          example: England
+          type: string
+        minorAdministrativeDivision:
+          example: City of Westminster
+          type: string
+        postalCode:
+          example: SW1A 2AB
           type: string
         sourceAttribution:
           description: Not human readable. This can be used to look up against source information objects.
@@ -200,9 +330,92 @@ components:
             type: string
           nullable: true
           type: array
-        to:
+        streetName:
+          example: Downing St
+          type: string
+        streetNumber:
+          example: '10'
+          type: string
+        toDate:
+          example: '2020-05-20'
+          type: string
+        type:
+          example: Residence
+          type: string
+      type: object
+    SigmaidNetworkRiskResult:
+      properties:
+        edges:
+          description: The relationships between the entities in the network. Each relationship connects two entities in the Nodes list.
+          items:
+            $ref: '#/components/schemas/SigmaidEdge'
+          nullable: true
+          type: array
+        nodes:
+          description: The individual entities that are part of the network of the requested entity.
+          items:
+            $ref: '#/components/schemas/SigmaidNode'
+          nullable: true
+          type: array
+        properties:
+          $ref: '#/components/schemas/SigmaidNetworkRiskProperties'
+      type: object
+    RequestFullSingleScreeningRequestPublic:
+      properties:
+        aliases:
+          description: Secondary names to perform a search on
+          items:
+            example: InGen, InGen Corp
+            type: string
+          nullable: true
+          type: array
+        countries:
+          description: ISO 3166-1 alpha-2
+          items:
+            example: US
+            type: string
+          nullable: true
+          type: array
+        createAlerts:
+          default: false
+          description: Optional. If true, alerts will be generated for this query if the results contain risk. Alerts are available in the UI or through webhook notifications.
+          nullable: true
+          type: boolean
+        customFields:
+          description: Optional. A list of custom fields to be associated with the entity for cross-referencing or disambiguation in alerts and monitoring. Does not affecting risk or matching logic. Each field must have a unique key.
+          items:
+            $ref: '#/components/schemas/SigmaidCustomEntityField'
+          nullable: true
+          type: array
+        customerKey:
+          description: Optional. A user-provided identifier that will be returned in alerts and monitoring. Any format.
+          example: ABC1234567890
+          type: string
+        dob:
+          description: Birth or foundation date. YYYY, YYYY-MM, YYYY-MM-DD, YYYY/MM or YYYY/MM/DD format.
+          example: '1993-06-11'
           nullable: true
           type: string
+        entityName:
+          description: The primary name of the search
+          example: InGen Corporation
+          type: string
+        entityType:
+          enum:
+          - person
+          - company
+          - aircraft
+          - vessel
+          example: company
+          nullable: true
+          type: string
+        filterSetID:
+          description: The Filter Set to use for this search. You may create and view your filtersets in the UI, under Settings > Filter Sets..
+          minimum: 0
+          type: integer
+      required:
+      - entityName
+      - filterSetID
       type: object
     SigmaidRelationshipChain:
       properties:
@@ -217,29 +430,26 @@ components:
           nullable: true
           type: array
       type: object
-    SigmaidCompositeResult:
+    SigmaidEconomicActivity:
       properties:
-        entity:
-          $ref: '#/components/schemas/SigmaidEntityResult'
-        matchDOB:
+        code:
           type: string
-        matchLocation:
+        label:
           type: string
-        matchName:
-          example: InGen Corporation
-          type: string
-        matchStrength:
-          example: 0.95
-          type: number
-        networkRiskSummary:
-          $ref: '#/components/schemas/SigmaidNetworkRiskResult'
-        sources:
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
           items:
-            $ref: '#/components/schemas/SigmaidSourcesByIntegration'
+            example: abcd1234//1234567890
+            type: string
           nullable: true
           type: array
-      required:
-      - entity
+      type: object
+    SigmaidCustomEntityField:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
       type: object
     SigmaidSourcesByIntegration:
       properties:
@@ -263,6 +473,48 @@ components:
             type: string
           nullable: true
           type: array
+      type: object
+    SigmaidDateWithSource:
+      properties:
+        humanReadable:
+          description: A human-readable representation of the range. Show in user interfaces instead of the date range if present
+          example: Circa 1980
+          nullable: true
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        until:
+          description: If the date is a range, the end of the range
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        value:
+          description: The date, or the start of a date range
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          type: string
+      type: object
+    SigmaidIndicatorSummary:
+      properties:
+        category:
+          example: Sanctions
+          type: string
+        count:
+          example: 2
+          type: integer
+        isNetwork:
+          description: Indicates whether the indicator is describes this entity or one of its network connections
+          example: false
+          type: boolean
+        maxScore:
+          example: 100
+          type: integer
       type: object
     SigmaidSummarySearchResultRow:
       properties:
@@ -323,11 +575,10 @@ components:
           nullable: true
           type: array
       type: object
-    SigmaidEconomicActivity:
+    SigmaidFact:
       properties:
-        code:
-          type: string
         label:
+          example: Notes
           type: string
         sourceAttribution:
           description: Not human readable. This can be used to look up against source information objects.
@@ -336,51 +587,61 @@ components:
             type: string
           nullable: true
           type: array
+        value:
+          example: <text>
+          type: string
       type: object
-    SigmaidNetworkRiskProperties:
+    SigmaidCompositeResult:
       properties:
-        relationships:
+        entity:
+          $ref: '#/components/schemas/SigmaidEntityResult'
+        matchDOB:
+          type: string
+        matchLocation:
+          type: string
+        matchName:
+          example: InGen Corporation
+          type: string
+        matchStrength:
+          example: 0.95
+          type: number
+        networkRiskSummary:
+          $ref: '#/components/schemas/SigmaidNetworkRiskResult'
+        sources:
           items:
+            $ref: '#/components/schemas/SigmaidSourcesByIntegration'
+          nullable: true
+          type: array
+      required:
+      - entity
+      type: object
+    SigmaidHighLightSection:
+      properties:
+        end:
+          description: The end of the detected entity name in the article. Relative to the beginning of the text.
+          type: integer
+        start:
+          description: The beginning offset of the detected entity name in the article. Relative to the beginning of the text.
+          type: integer
+        target:
+          description: Determines whether the offsets should be applied to the title or body.
+          enum:
+          - title
+          - body
+          type: string
+      type: object
+    SigmaidTextWithSource:
+      properties:
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
             type: string
           nullable: true
           type: array
-      type: object
-    SigmaidNetworkRiskResult:
-      properties:
-        edges:
-          description: The relationships between the entities in the network. Each relationship connects two entities in the Nodes list.
-          items:
-            $ref: '#/components/schemas/SigmaidEdge'
-          nullable: true
-          type: array
-        nodes:
-          description: The individual entities that are part of the network of the requested entity.
-          items:
-            $ref: '#/components/schemas/SigmaidNode'
-          nullable: true
-          type: array
-        properties:
-          $ref: '#/components/schemas/SigmaidNetworkRiskProperties'
-      type: object
-    SigmaidFacetVessel:
-      properties:
-        imo:
-          $ref: '#/components/schemas/SigmaidTextWithSource'
-        maritimeCallSigns:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        portsOfRegistry:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        types:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
+        value:
+          example: <text>
+          type: string
       type: object
     SigmaidKYCEntityData:
       properties:
@@ -407,155 +668,6 @@ components:
         websites:
           items:
             $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-      type: object
-    SigmaidRiskSummary:
-      properties:
-        score:
-          type: number
-      type: object
-    SigmaidEdge:
-      properties:
-        edgeID:
-          description: A unique identifier for this edge.
-          type: string
-        extendedRelationshipData:
-          $ref: '#/components/schemas/SigmaidExtendedRelationshipData'
-        fromNode:
-          description: The SigmaID of the node that this edge starts from.
-          type: string
-        inverseRelationship:
-          description: The normalized relationship in the inverse direction.
-          example: Is Subsidiary Of
-          type: string
-        relationship:
-          description: The normalized relationship, as determined by SigmaID's NLP models.
-          example: Has Subsidiary
-          type: string
-        relationshipDenotesOwnership:
-          description: Whether this relationship imparts ownership or control. For example, 'Has Subsidiary' would have this field set to true, while 'Is Officer Of'' would have it set to false.
-          type: boolean
-        toNode:
-          description: The SigmaID of the node that this edge points to.
-          type: string
-        unnormalizedRelationship:
-          description: The raw text of the relationship as it appears in the source data.
-          type: string
-      type: object
-    SigmaidLocation:
-      properties:
-        address:
-          example: 10 Downing St, London SW1A 2AB, United Kingdom
-          type: string
-        country:
-          example: United Kingdom
-          type: string
-        countryCode:
-          example: GB
-          type: string
-        fromDate:
-          example: '1684-05-20'
-          type: string
-        locality:
-          example: London
-          type: string
-        majorAdministrativeDivision:
-          example: England
-          type: string
-        minorAdministrativeDivision:
-          example: City of Westminster
-          type: string
-        postalCode:
-          example: SW1A 2AB
-          type: string
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        streetName:
-          example: Downing St
-          type: string
-        streetNumber:
-          example: '10'
-          type: string
-        toDate:
-          example: '2020-05-20'
-          type: string
-        type:
-          example: Residence
-          type: string
-      type: object
-    SigmaidIdentification:
-      properties:
-        country:
-          nullable: true
-          type: string
-        extras:
-          additionalProperties:
-            type: string
-          nullable: true
-          type: object
-        label:
-          type: string
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        value:
-          type: string
-      type: object
-    SigmaidExtractedRisk:
-      properties:
-        category:
-          type: string
-        highlights:
-          description: Offsets of where the entity appears in the article body or title
-          items:
-            $ref: '#/components/schemas/SigmaidHighLightSection'
-          type: array
-      type: object
-    SigmaidFact:
-      properties:
-        label:
-          example: Notes
-          type: string
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        value:
-          example: <text>
-          type: string
-      type: object
-    SigmaidCorporateNumber:
-      properties:
-        country:
-          items:
-            type: string
-          nullable: true
-          type: array
-        number:
-          type: string
-        register:
-          items:
-            type: string
-          nullable: true
-          type: array
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
           nullable: true
           type: array
       type: object
@@ -587,77 +699,33 @@ components:
           nullable: true
           type: array
       type: object
-    SigmaidFacetAircraft:
+    SigmaidEdge:
       properties:
-        manufactureDates:
-          items:
-            $ref: '#/components/schemas/SigmaidDateWithSource'
-          nullable: true
-          type: array
-        models:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        operators:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        otherIdentifiers:
-          items:
-            $ref: '#/components/schemas/SigmaidIdentification'
-          nullable: true
-          type: array
-        serialNumbers:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-        tailNumbers:
-          items:
-            $ref: '#/components/schemas/SigmaidTextWithSource'
-          nullable: true
-          type: array
-      type: object
-    ResponseFullSearchResultWithAlertPubliclyDocumented:
-      properties:
-        alertCreatedURN:
-          description: Populated if the search resulted in an alert being created. Contains the URN of the alert. Only valid if using createAlerts=true in the request.
+        edgeID:
+          description: A unique identifier for this edge.
           type: string
-        resultCount:
-          description: Number of individual matches found
-          example: 2
-          type: integer
-        resultRows:
-          items:
-            $ref: '#/components/schemas/SigmaidCompositeResult'
-          nullable: true
-          type: array
-        searchDate:
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
+        extendedRelationshipData:
+          $ref: '#/components/schemas/SigmaidExtendedRelationshipData'
+        fromNode:
+          description: The SigmaID of the node that this edge starts from.
           type: string
-      required:
-      - resultCount
-      - resultRows
-      - searchDate
-      type: object
-    SigmaidIndicatorSummary:
-      properties:
-        category:
-          example: Sanctions
+        inverseRelationship:
+          description: The normalized relationship in the inverse direction.
+          example: Is Subsidiary Of
           type: string
-        count:
-          example: 2
-          type: integer
-        isNetwork:
-          description: Indicates whether the indicator is describes this entity or one of its network connections
-          example: false
+        relationship:
+          description: The normalized relationship, as determined by SigmaID's NLP models.
+          example: Has Subsidiary
+          type: string
+        relationshipDenotesOwnership:
+          description: Whether this relationship imparts ownership or control. For example, 'Has Subsidiary' would have this field set to true, while 'Is Officer Of'' would have it set to false.
           type: boolean
-        maxScore:
-          example: 100
-          type: integer
+        toNode:
+          description: The SigmaID of the node that this edge points to.
+          type: string
+        unnormalizedRelationship:
+          description: The raw text of the relationship as it appears in the source data.
+          type: string
       type: object
     SigmaidEventArticle:
       properties:
@@ -719,112 +787,13 @@ components:
           description: The article URL
           type: string
       type: object
-    SigmaidExtractedTerritory:
+    SigmaidNetworkRiskProperties:
       properties:
-        adminOne:
-          description: The first-level administrative division of the territory, if applicable. For example, a state in the US or a province in Canada.
-          nullable: true
-          type: string
-        count:
-          description: The amount of times this territory was mentioned in the article
-          type: integer
-        country:
-          description: The ISO 3166-1 alpha-2 country code of the territory
-          type: string
-        evidence:
-          description: The snippets of the article that support a territory determination
+        relationships:
           items:
             type: string
           nullable: true
           type: array
-        highlights:
-          description: Offsets of where the entity appears in the article body or title
-          items:
-            $ref: '#/components/schemas/SigmaidHighLightSection'
-          type: array
-      type: object
-    SigmaidDateWithSource:
-      properties:
-        humanReadable:
-          description: A human-readable representation of the range. Show in user interfaces instead of the date range if present
-          example: Circa 1980
-          nullable: true
-          type: string
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        until:
-          description: If the date is a range, the end of the range
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          nullable: true
-          type: string
-        value:
-          description: The date, or the start of a date range
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          type: string
-      type: object
-    SigmaidEntityResult:
-      properties:
-        KYC:
-          $ref: '#/components/schemas/SigmaidKYCEntityData'
-        entityName:
-          $ref: '#/components/schemas/SigmaidTextWithSource'
-        facet:
-          $ref: '#/components/schemas/SigmaidFullEntityFacet'
-        indicatorSummaries:
-          items:
-            $ref: '#/components/schemas/SigmaidIndicatorSummary'
-          type: array
-        indicators:
-          items:
-            $ref: '#/components/schemas/SigmaidIndicator'
-          nullable: true
-          type: array
-        news:
-          items:
-            $ref: '#/components/schemas/SigmaidNewsEvent'
-          nullable: true
-          type: array
-        riskSummary:
-          $ref: '#/components/schemas/SigmaidRiskSummary'
-        sigmaID:
-          type: string
-      required:
-      - sigmaID
-      - riskSummary
-      - indicatorSummaries
-      - entityName
-      - KYC
-      - news
-      - indicators
-      - facet
-      type: object
-    SigmaidSourceURL:
-      properties:
-        name:
-          type: string
-        url:
-          nullable: true
-          type: string
-      type: object
-    SigmaidTextWithSource:
-      properties:
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        value:
-          example: <text>
-          type: string
       type: object
     SigmaidExtendedRelationshipData:
       properties:
@@ -858,63 +827,6 @@ components:
             type: string
           nullable: true
           type: array
-      type: object
-    RequestFullSingleScreeningRequestPublic:
-      properties:
-        aliases:
-          description: Secondary names to perform a search on
-          items:
-            example: InGen, InGen Corp
-            type: string
-          nullable: true
-          type: array
-        countries:
-          description: ISO 3166-1 alpha-2
-          items:
-            example: US
-            type: string
-          nullable: true
-          type: array
-        createAlerts:
-          default: false
-          description: Optional. If true, alerts will be generated for this query if the results contain risk. Alerts are available in the UI or through webhook notifications.
-          nullable: true
-          type: boolean
-        customFields:
-          description: Optional. A list of custom fields to be associated with the entity for cross-referencing or disambiguation in alerts and monitoring. Does not affecting risk or matching logic. Each field must have a unique key.
-          items:
-            $ref: '#/components/schemas/SigmaidCustomEntityField'
-          nullable: true
-          type: array
-        customerKey:
-          description: Optional. A user-provided identifier that will be returned in alerts and monitoring. Any format.
-          example: ABC1234567890
-          type: string
-        dob:
-          description: Birth or foundation date. YYYY, YYYY-MM, YYYY-MM-DD, YYYY/MM or YYYY/MM/DD format.
-          example: '1993-06-11'
-          nullable: true
-          type: string
-        entityName:
-          description: The primary name of the search
-          example: InGen Corporation
-          type: string
-        entityType:
-          enum:
-          - person
-          - company
-          - aircraft
-          - vessel
-          example: company
-          nullable: true
-          type: string
-        filterSetID:
-          description: The Filter Set to use for this search. You may create and view your filtersets in the UI, under Settings > Filter Sets..
-          minimum: 0
-          type: integer
-      required:
-      - entityName
-      - filterSetID
       type: object
     SigmaidIndicator:
       properties:
@@ -991,50 +903,138 @@ components:
       - sources
       - description
       type: object
-    SigmaidBasicEntityResult:
+    SigmaidExtractedRisk:
       properties:
-        entityName:
-          example: InGen Corporation
+        category:
           type: string
-        entityType:
-          example: company
-          type: string
-        sigmaID:
-          example: 3BX869NCJTZ5K
-          type: string
-      type: object
-    SigmaidNewsEvent:
-      properties:
-        articles:
+        highlights:
+          description: Offsets of where the entity appears in the article body or title
           items:
-            $ref: '#/components/schemas/SigmaidEventArticle'
-          nullable: true
+            $ref: '#/components/schemas/SigmaidHighLightSection'
           type: array
-        entityRisk:
+      type: object
+    SigmaidExtractedTerritory:
+      properties:
+        adminOne:
+          description: The first-level administrative division of the territory, if applicable. For example, a state in the US or a province in Canada.
+          nullable: true
           type: string
-        eventConfidence:
-          type: number
-        eventLabel:
+        count:
+          description: The amount of times this territory was mentioned in the article
+          type: integer
+        country:
+          description: The ISO 3166-1 alpha-2 country code of the territory
           type: string
-        eventMaterialityScore:
-          type: number
-        eventSeverity:
-          type: string
-        humanVerified:
-          type: boolean
-        id:
-          type: string
-        isPreferredPublisher:
-          type: boolean
-        sigmaID:
-          type: string
-        topics:
+        evidence:
+          description: The snippets of the article that support a territory determination
           items:
             type: string
           nullable: true
           type: array
-        unformattedLabel:
+        highlights:
+          description: Offsets of where the entity appears in the article body or title
+          items:
+            $ref: '#/components/schemas/SigmaidHighLightSection'
+          type: array
+      type: object
+    SigmaidFacetCompany:
+      properties:
+        corporateNumbers:
+          items:
+            $ref: '#/components/schemas/SigmaidCorporateNumber'
+          nullable: true
+          type: array
+        economicActivities:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/SigmaidEconomicActivity'
+            type: array
+          nullable: true
+          type: object
+        foundedDates:
+          items:
+            $ref: '#/components/schemas/SigmaidDateWithSource'
+          nullable: true
+          type: array
+        incorporationTypes:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        linesOfBusiness:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        statuses:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    SigmaidFacetVessel:
+      properties:
+        imo:
+          $ref: '#/components/schemas/SigmaidTextWithSource'
+        maritimeCallSigns:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        portsOfRegistry:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+        types:
+          items:
+            $ref: '#/components/schemas/SigmaidTextWithSource'
+          nullable: true
+          type: array
+      type: object
+    SigmaidIdentification:
+      properties:
+        country:
+          nullable: true
           type: string
+        extras:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        label:
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        value:
+          type: string
+      type: object
+    SigmaidCorporateNumber:
+      properties:
+        country:
+          items:
+            type: string
+          nullable: true
+          type: array
+        number:
+          type: string
+        register:
+          items:
+            type: string
+          nullable: true
+          type: array
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
       type: object
   securitySchemes:
     apiKey:

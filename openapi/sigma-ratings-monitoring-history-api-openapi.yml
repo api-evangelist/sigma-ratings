@@ -156,71 +156,84 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SigmaidExtractEntity:
+    SigmaidBasicEntityResult:
       properties:
-        entityRisk:
-          description: 'A measure of how culpable or involved the entity is in the event, based on the article text. Possible values are: ''Very High'', ''High'', ''Possible'', ''Low'', ''Unlikely'', and ''Undetermined''.'
+        entityName:
+          example: InGen Corporation
           type: string
-        focalEntity:
-          description: Marks if this extracted entity is the main entity of its event. Events have one focal entity, but articles may appear in different events with different focal entities.'
-          type: boolean
-        highlights:
-          description: Offsets of where the entity appears in the article body or title
+        entityType:
+          example: company
+          type: string
+        sigmaID:
+          example: 3BX869NCJTZ5K
+          type: string
+      type: object
+    ResponseChangedField:
+      properties:
+        after:
           items:
-            $ref: '#/components/schemas/SigmaidHighLightSection'
+            $ref: '#/components/schemas/ResponseChangedItem'
+          nullable: true
           type: array
-        labels:
-          description: 'Predicted entity types: PER, ORG, LOC, or MISC.'
+        before:
           items:
             type: string
           nullable: true
           type: array
-        text:
-          description: The entity name detected in the article body
+        field:
           type: string
-        yearsOfBirth:
-          description: Birthdays of entities, if detected. This is a list of years, not a range.
-          items:
-            type: integer
-          nullable: true
-          type: array
       type: object
-    SigmaidCustomEntityField:
+    ResponseDiffNumber:
       properties:
-        key:
+        new:
+          type: integer
+        old:
+          type: integer
+      type: object
+    ResponseChangedItem:
+      properties:
+        type:
           type: string
         value:
           type: string
       type: object
-    ResponseIndicatorDiff:
+    RequestEntitiesHistoriesRequestPublic:
       properties:
-        added:
-          type: integer
-        category:
-          type: string
-        deleted:
-          type: integer
-        isNetwork:
-          type: boolean
-        maxScore:
-          type: integer
-        updated:
-          type: integer
-      type: object
-    SigmaidHighLightSection:
-      properties:
-        end:
-          description: The end of the detected entity name in the article. Relative to the beginning of the text.
-          type: integer
-        start:
-          description: The beginning offset of the detected entity name in the article. Relative to the beginning of the text.
-          type: integer
-        target:
-          description: Determines whether the offsets should be applied to the title or body.
+        createdAt:
+          $ref: '#/components/schemas/RequestDateRangeRequest'
+        cursor: {}
+        groupIDs:
+          description: Optional. An array of group IDs to include entities from.
+          items:
+            minimum: 0
+            type: integer
+          nullable: true
+          type: array
+        historyTypes:
+          description: Optional. An array of history types to include. Empty means all.
           enum:
-          - title
-          - body
-          type: string
+          - lifecycle
+          - review
+          - alert
+          - disposition
+          - monitoring
+          - configuration
+          items:
+            type: string
+          nullable: true
+          type: array
+        page:
+          description: 'Page number, 1-indexed. Default: 1'
+          example: 1
+          type: integer
+        pageSize:
+          description: 'Number of results per page. Maximum: 100, Default: 10'
+          example: 10
+          type: integer
+        total:
+          description: Total number of results. Ignored in requests, used in responses.
+          example: 15000
+          type: integer
       type: object
     ResponseEntityHistory:
       properties:
@@ -280,6 +293,118 @@ components:
         urn:
           type: string
       type: object
+    SigmaidSourceURL:
+      properties:
+        name:
+          type: string
+        url:
+          nullable: true
+          type: string
+      type: object
+    SigmaidExtractEntity:
+      properties:
+        entityRisk:
+          description: 'A measure of how culpable or involved the entity is in the event, based on the article text. Possible values are: ''Very High'', ''High'', ''Possible'', ''Low'', ''Unlikely'', and ''Undetermined''.'
+          type: string
+        focalEntity:
+          description: Marks if this extracted entity is the main entity of its event. Events have one focal entity, but articles may appear in different events with different focal entities.'
+          type: boolean
+        highlights:
+          description: Offsets of where the entity appears in the article body or title
+          items:
+            $ref: '#/components/schemas/SigmaidHighLightSection'
+          type: array
+        labels:
+          description: 'Predicted entity types: PER, ORG, LOC, or MISC.'
+          items:
+            type: string
+          nullable: true
+          type: array
+        text:
+          description: The entity name detected in the article body
+          type: string
+        yearsOfBirth:
+          description: Birthdays of entities, if detected. This is a list of years, not a range.
+          items:
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    SigmaidRiskSummary:
+      properties:
+        score:
+          type: number
+      type: object
+    ResponseDecisionState:
+      properties:
+        decidedByDefault:
+          type: boolean
+        decisionedAgainst:
+          type: boolean
+        hasDecision:
+          type: boolean
+        notes:
+          type: string
+        rationale:
+          items:
+            type: string
+          nullable: true
+          type: array
+        reviewSubmittedAt:
+          type: string
+        reviewedByUserName:
+          type: string
+        reviewedByUserURN:
+          type: string
+        wasDecisionMadeAgainstThisVersion:
+          type: boolean
+      type: object
+    SigmaidLocation:
+      properties:
+        address:
+          example: 10 Downing St, London SW1A 2AB, United Kingdom
+          type: string
+        country:
+          example: United Kingdom
+          type: string
+        countryCode:
+          example: GB
+          type: string
+        fromDate:
+          example: '1684-05-20'
+          type: string
+        locality:
+          example: London
+          type: string
+        majorAdministrativeDivision:
+          example: England
+          type: string
+        minorAdministrativeDivision:
+          example: City of Westminster
+          type: string
+        postalCode:
+          example: SW1A 2AB
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        streetName:
+          example: Downing St
+          type: string
+        streetNumber:
+          example: '10'
+          type: string
+        toDate:
+          example: '2020-05-20'
+          type: string
+        type:
+          example: Residence
+          type: string
+      type: object
     SigmaidRelationshipChain:
       properties:
         edges:
@@ -293,115 +418,32 @@ components:
           nullable: true
           type: array
       type: object
-    RequestEntitiesHistoriesRequestPublic:
+    ResponseDecisionTimelineState:
       properties:
-        createdAt:
-          $ref: '#/components/schemas/RequestDateRangeRequest'
-        cursor: {}
-        groupIDs:
-          description: Optional. An array of group IDs to include entities from.
-          items:
-            minimum: 0
-            type: integer
-          nullable: true
-          type: array
-        historyTypes:
-          description: Optional. An array of history types to include. Empty means all.
-          enum:
-          - lifecycle
-          - review
-          - alert
-          - disposition
-          - monitoring
-          - configuration
+        decidedByDefault:
+          type: boolean
+        decisionedAgainst:
+          type: boolean
+        notes:
+          type: string
+        rationale:
           items:
             type: string
           nullable: true
           type: array
-        page:
-          description: 'Page number, 1-indexed. Default: 1'
-          example: 1
-          type: integer
-        pageSize:
-          description: 'Number of results per page. Maximum: 100, Default: 10'
-          example: 10
-          type: integer
-        total:
-          description: Total number of results. Ignored in requests, used in responses.
-          example: 15000
-          type: integer
+        reviewSubmittedAt:
+          type: string
+        reviewedByUserName:
+          type: string
+        reviewedByUserURN:
+          type: string
       type: object
-    RequestEntityHistoryRequestPublic:
+    SigmaidCustomEntityField:
       properties:
-        page:
-          description: 'Page number, 1-indexed. Default: 1'
-          example: 1
-          type: integer
-        pageSize:
-          description: 'Number of results per page. Maximum: 100, Default: 10'
-          example: 10
-          type: integer
-        total:
-          description: Total number of results. Ignored in requests, used in responses.
-          example: 15000
-          type: integer
-      type: object
-    ResponseConfigurationChanges:
-      properties:
-        dataChangeType:
+        key:
           type: string
-        dataChanges:
-          items:
-            $ref: '#/components/schemas/ResponseChangedField'
-          nullable: true
-          type: array
-      type: object
-    SigmaidBasicSearchParams:
-      properties:
-        aliases:
-          description: Secondary names to perform a search on
-          items:
-            example: InGen, InGen Corp
-            type: string
-          nullable: true
-          type: array
-        countries:
-          description: ISO 3166-1 alpha-2
-          items:
-            example: US
-            type: string
-          nullable: true
-          type: array
-        customFields:
-          description: Optional. A list of custom fields to be associated with the entity for cross-referencing or disambiguation in alerts and monitoring. Does not affecting risk or matching logic. Each field must have a unique key.
-          items:
-            $ref: '#/components/schemas/SigmaidCustomEntityField'
-          nullable: true
-          type: array
-        customerKey:
-          description: Optional. A user-provided identifier that will be returned in alerts and monitoring. Any format.
-          example: ABC1234567890
+        value:
           type: string
-        dob:
-          description: Birth or foundation date. YYYY, YYYY-MM, YYYY-MM-DD, YYYY/MM or YYYY/MM/DD format.
-          example: '1993-06-11'
-          nullable: true
-          type: string
-        entityName:
-          description: The primary name of the search
-          example: InGen Corporation
-          type: string
-        entityType:
-          enum:
-          - person
-          - company
-          - aircraft
-          - vessel
-          example: company
-          nullable: true
-          type: string
-      required:
-      - entityName
       type: object
     SigmaidSourcesByIntegration:
       properties:
@@ -425,6 +467,83 @@ components:
             type: string
           nullable: true
           type: array
+      type: object
+    SigmaidDateWithSource:
+      properties:
+        humanReadable:
+          description: A human-readable representation of the range. Show in user interfaces instead of the date range if present
+          example: Circa 1980
+          nullable: true
+          type: string
+        sourceAttribution:
+          description: Not human readable. This can be used to look up against source information objects.
+          items:
+            example: abcd1234//1234567890
+            type: string
+          nullable: true
+          type: array
+        until:
+          description: If the date is a range, the end of the range
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        value:
+          description: The date, or the start of a date range
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          type: string
+      type: object
+    RequestEntityHistoryRequestPublic:
+      properties:
+        page:
+          description: 'Page number, 1-indexed. Default: 1'
+          example: 1
+          type: integer
+        pageSize:
+          description: 'Number of results per page. Maximum: 100, Default: 10'
+          example: 10
+          type: integer
+        total:
+          description: Total number of results. Ignored in requests, used in responses.
+          example: 15000
+          type: integer
+      type: object
+    SigmaidIndicatorSummary:
+      properties:
+        category:
+          example: Sanctions
+          type: string
+        count:
+          example: 2
+          type: integer
+        isNetwork:
+          description: Indicates whether the indicator is describes this entity or one of its network connections
+          example: false
+          type: boolean
+        maxScore:
+          example: 100
+          type: integer
+      type: object
+    ResponseMatchChange:
+      properties:
+        birthOrFoundationDates:
+          items:
+            format: date-time
+            type: string
+          nullable: true
+          type: array
+        changeType:
+          type: string
+        entityName:
+          type: string
+        locations:
+          items:
+            $ref: '#/components/schemas/SigmaidLocation'
+          nullable: true
+          type: array
+        sigmaID:
+          type: string
       type: object
     SigmaidSummarySearchResultRow:
       properties:
@@ -485,30 +604,79 @@ components:
           nullable: true
           type: array
       type: object
-    ResponseMatchChange:
+    ResponseKYCChange:
       properties:
-        birthOrFoundationDates:
-          items:
-            format: date-time
-            type: string
-          nullable: true
-          type: array
         changeType:
           type: string
-        entityName:
-          type: string
-        locations:
+        dataChanges:
           items:
-            $ref: '#/components/schemas/SigmaidLocation'
+            $ref: '#/components/schemas/ResponseChangedField'
           nullable: true
           type: array
         sigmaID:
           type: string
       type: object
-    SigmaidRiskSummary:
+    SigmaidBasicSearchParams:
       properties:
-        score:
-          type: number
+        aliases:
+          description: Secondary names to perform a search on
+          items:
+            example: InGen, InGen Corp
+            type: string
+          nullable: true
+          type: array
+        countries:
+          description: ISO 3166-1 alpha-2
+          items:
+            example: US
+            type: string
+          nullable: true
+          type: array
+        customFields:
+          description: Optional. A list of custom fields to be associated with the entity for cross-referencing or disambiguation in alerts and monitoring. Does not affecting risk or matching logic. Each field must have a unique key.
+          items:
+            $ref: '#/components/schemas/SigmaidCustomEntityField'
+          nullable: true
+          type: array
+        customerKey:
+          description: Optional. A user-provided identifier that will be returned in alerts and monitoring. Any format.
+          example: ABC1234567890
+          type: string
+        dob:
+          description: Birth or foundation date. YYYY, YYYY-MM, YYYY-MM-DD, YYYY/MM or YYYY/MM/DD format.
+          example: '1993-06-11'
+          nullable: true
+          type: string
+        entityName:
+          description: The primary name of the search
+          example: InGen Corporation
+          type: string
+        entityType:
+          enum:
+          - person
+          - company
+          - aircraft
+          - vessel
+          example: company
+          nullable: true
+          type: string
+      required:
+      - entityName
+      type: object
+    SigmaidHighLightSection:
+      properties:
+        end:
+          description: The end of the detected entity name in the article. Relative to the beginning of the text.
+          type: integer
+        start:
+          description: The beginning offset of the detected entity name in the article. Relative to the beginning of the text.
+          type: integer
+        target:
+          description: Determines whether the offsets should be applied to the title or body.
+          enum:
+          - title
+          - body
+          type: string
       type: object
     SigmaidEdge:
       properties:
@@ -537,69 +705,6 @@ components:
         unnormalizedRelationship:
           description: The raw text of the relationship as it appears in the source data.
           type: string
-      type: object
-    SigmaidLocation:
-      properties:
-        address:
-          example: 10 Downing St, London SW1A 2AB, United Kingdom
-          type: string
-        country:
-          example: United Kingdom
-          type: string
-        countryCode:
-          example: GB
-          type: string
-        fromDate:
-          example: '1684-05-20'
-          type: string
-        locality:
-          example: London
-          type: string
-        majorAdministrativeDivision:
-          example: England
-          type: string
-        minorAdministrativeDivision:
-          example: City of Westminster
-          type: string
-        postalCode:
-          example: SW1A 2AB
-          type: string
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        streetName:
-          example: Downing St
-          type: string
-        streetNumber:
-          example: '10'
-          type: string
-        toDate:
-          example: '2020-05-20'
-          type: string
-        type:
-          example: Residence
-          type: string
-      type: object
-    SigmaidExtractedRisk:
-      properties:
-        category:
-          type: string
-        highlights:
-          description: Offsets of where the entity appears in the article body or title
-          items:
-            $ref: '#/components/schemas/SigmaidHighLightSection'
-          type: array
-      type: object
-    ResponseDiffNumber:
-      properties:
-        new:
-          type: integer
-        old:
-          type: integer
       type: object
     ResponseNewsChange:
       properties:
@@ -646,72 +751,6 @@ components:
           nullable: true
           type: array
         unformattedLabel:
-          type: string
-      type: object
-    ResponsePaginatedEntityHistory:
-      properties:
-        histories:
-          items:
-            $ref: '#/components/schemas/ResponseEntityHistory'
-          nullable: true
-          type: array
-        page:
-          type: integer
-        pageSize:
-          type: integer
-        total:
-          type: integer
-      type: object
-    ResponseDecisionState:
-      properties:
-        decidedByDefault:
-          type: boolean
-        decisionedAgainst:
-          type: boolean
-        hasDecision:
-          type: boolean
-        notes:
-          type: string
-        rationale:
-          items:
-            type: string
-          nullable: true
-          type: array
-        reviewSubmittedAt:
-          type: string
-        reviewedByUserName:
-          type: string
-        reviewedByUserURN:
-          type: string
-        wasDecisionMadeAgainstThisVersion:
-          type: boolean
-      type: object
-    SigmaidIndicatorSummary:
-      properties:
-        category:
-          example: Sanctions
-          type: string
-        count:
-          example: 2
-          type: integer
-        isNetwork:
-          description: Indicates whether the indicator is describes this entity or one of its network connections
-          example: false
-          type: boolean
-        maxScore:
-          example: 100
-          type: integer
-      type: object
-    ResponseKYCChange:
-      properties:
-        changeType:
-          type: string
-        dataChanges:
-          items:
-            $ref: '#/components/schemas/ResponseChangedField'
-          nullable: true
-          type: array
-        sigmaID:
           type: string
       type: object
     SigmaidEventArticle:
@@ -774,6 +813,78 @@ components:
           description: The article URL
           type: string
       type: object
+    SigmaidExtendedRelationshipData:
+      properties:
+        asOfDate:
+          description: The date this relationship data was reported as of.
+          type: string
+        currency:
+          description: The currency of the monetary value.
+          type: string
+        endDate:
+          description: The date this relationship ended.
+          type: string
+        former:
+          description: Whether this relationship is no longer active.
+          type: boolean
+        monetaryValue:
+          description: The monetary value associated with this relationship.
+          type: string
+        numShares:
+          description: The number of shares held in this relationship.
+          type: string
+        percent:
+          description: The ownership or control percentage associated with this relationship.
+          type: string
+        startDate:
+          description: The date this relationship began.
+          type: string
+        ultimateSources:
+          description: The original data sources for this relationship.
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    RequestDateRangeRequest:
+      properties:
+        since:
+          description: The start of the date range.
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+        until:
+          description: The end of the date range.
+          example: '2023-01-01T00:00:00Z'
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    ResponsePaginatedEntityHistory:
+      properties:
+        histories:
+          items:
+            $ref: '#/components/schemas/ResponseEntityHistory'
+          nullable: true
+          type: array
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+      type: object
+    SigmaidExtractedRisk:
+      properties:
+        category:
+          type: string
+        highlights:
+          description: Offsets of where the entity appears in the article body or title
+          items:
+            $ref: '#/components/schemas/SigmaidHighLightSection'
+          type: array
+      type: object
     SigmaidExtractedTerritory:
       properties:
         adminOne:
@@ -797,75 +908,6 @@ components:
           items:
             $ref: '#/components/schemas/SigmaidHighLightSection'
           type: array
-      type: object
-    ResponseChangedField:
-      properties:
-        after:
-          items:
-            $ref: '#/components/schemas/ResponseChangedItem'
-          nullable: true
-          type: array
-        before:
-          items:
-            type: string
-          nullable: true
-          type: array
-        field:
-          type: string
-      type: object
-    SigmaidDateWithSource:
-      properties:
-        humanReadable:
-          description: A human-readable representation of the range. Show in user interfaces instead of the date range if present
-          example: Circa 1980
-          nullable: true
-          type: string
-        sourceAttribution:
-          description: Not human readable. This can be used to look up against source information objects.
-          items:
-            example: abcd1234//1234567890
-            type: string
-          nullable: true
-          type: array
-        until:
-          description: If the date is a range, the end of the range
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          nullable: true
-          type: string
-        value:
-          description: The date, or the start of a date range
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          type: string
-      type: object
-    ResponseDecisionTimelineState:
-      properties:
-        decidedByDefault:
-          type: boolean
-        decisionedAgainst:
-          type: boolean
-        notes:
-          type: string
-        rationale:
-          items:
-            type: string
-          nullable: true
-          type: array
-        reviewSubmittedAt:
-          type: string
-        reviewedByUserName:
-          type: string
-        reviewedByUserURN:
-          type: string
-      type: object
-    SigmaidSourceURL:
-      properties:
-        name:
-          type: string
-        url:
-          nullable: true
-          type: string
       type: object
     ResponseIndicatorChange:
       properties:
@@ -958,72 +1000,30 @@ components:
       - sources
       - description
       type: object
-    SigmaidExtendedRelationshipData:
+    ResponseConfigurationChanges:
       properties:
-        asOfDate:
-          description: The date this relationship data was reported as of.
+        dataChangeType:
           type: string
-        currency:
-          description: The currency of the monetary value.
-          type: string
-        endDate:
-          description: The date this relationship ended.
-          type: string
-        former:
-          description: Whether this relationship is no longer active.
-          type: boolean
-        monetaryValue:
-          description: The monetary value associated with this relationship.
-          type: string
-        numShares:
-          description: The number of shares held in this relationship.
-          type: string
-        percent:
-          description: The ownership or control percentage associated with this relationship.
-          type: string
-        startDate:
-          description: The date this relationship began.
-          type: string
-        ultimateSources:
-          description: The original data sources for this relationship.
+        dataChanges:
           items:
-            type: string
+            $ref: '#/components/schemas/ResponseChangedField'
           nullable: true
           type: array
       type: object
-    ResponseChangedItem:
+    ResponseIndicatorDiff:
       properties:
-        type:
+        added:
+          type: integer
+        category:
           type: string
-        value:
-          type: string
-      type: object
-    RequestDateRangeRequest:
-      properties:
-        since:
-          description: The start of the date range.
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          nullable: true
-          type: string
-        until:
-          description: The end of the date range.
-          example: '2023-01-01T00:00:00Z'
-          format: date-time
-          nullable: true
-          type: string
-      type: object
-    SigmaidBasicEntityResult:
-      properties:
-        entityName:
-          example: InGen Corporation
-          type: string
-        entityType:
-          example: company
-          type: string
-        sigmaID:
-          example: 3BX869NCJTZ5K
-          type: string
+        deleted:
+          type: integer
+        isNetwork:
+          type: boolean
+        maxScore:
+          type: integer
+        updated:
+          type: integer
       type: object
   securitySchemes:
     apiKey:

@@ -74,6 +74,12 @@ components:
           format: date-time
           type: string
       type: object
+    SigmaidIntegrationLastUpdated:
+      properties:
+        lastUpdated:
+          format: date-time
+          type: string
+      type: object
     SigmaidDataSourcesResponse:
       properties:
         rawDataSources:
@@ -93,12 +99,6 @@ components:
             type: array
           nullable: true
           type: object
-      type: object
-    SigmaidIntegrationLastUpdated:
-      properties:
-        lastUpdated:
-          format: date-time
-          type: string
       type: object
   securitySchemes:
     apiKey:
