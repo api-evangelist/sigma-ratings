@@ -63,6 +63,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SigmaidIntegrationLastUpdated:
+      properties:
+        lastUpdated:
+          format: date-time
+          type: string
+      type: object
     SigmaidIntegrationInfo:
       properties:
         firstIngestedDate:
@@ -71,12 +77,6 @@ components:
         key:
           type: string
         lastRunDate:
-          format: date-time
-          type: string
-      type: object
-    SigmaidIntegrationLastUpdated:
-      properties:
-        lastUpdated:
           format: date-time
           type: string
       type: object
