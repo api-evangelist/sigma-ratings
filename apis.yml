@@ -171,6 +171,9 @@ apis:
   - type: OpenAPI
     url: openapi/sigma-ratings-webhooks-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/sigma-ratings-capability-edges.yml
+  name: Sigma360 Business Capability Map
 - type: Website
   url: https://www.sigma360.com/
 - type: DeveloperPortal
