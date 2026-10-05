@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.sigma360.com/openapi.json",
+ "requested_url": "https://docs.sigma360.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 102048,
+ "sha256": "fcdda6232c62a1dc1b93aebf4e2efa18bf7a134bf71377962b857d94d068a143",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
